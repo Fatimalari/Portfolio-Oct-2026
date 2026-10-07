@@ -71,7 +71,7 @@
   background: #d9d9d9; /* placeholder until the final media is chosen */
 }
 
-/* Social links: 44px logo tiles stacked on the right, centred at 40% of the hero */
+/* Social links: 44px outline logos stacked on the right, centred at 40% of the hero */
 .social {
   --tile: 44px;
   --tile-gap: 18px;
