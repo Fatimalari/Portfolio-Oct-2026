@@ -268,6 +268,29 @@ main > .section:last-child { padding-bottom: 120px; }
   background: #d9d9d9; /* placeholder until the photo is added */
 }
 
+/* Experience */
+.experience__list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-item__date {
+  margin: 0;
+  font-size: var(--text-primary-size);
+  line-height: 1.5;
+}
+
+.experience-item__title { margin-top: 14px; }
+
+.experience-item__text {
+  margin: 13px 0 0;
+  line-height: 1.5;
+}
+
 /* Button */
 .button {
   display: inline-block;
