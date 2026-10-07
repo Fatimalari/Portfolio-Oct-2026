@@ -179,7 +179,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 78px;
+  gap: 40px;
 }
 
 .work-card {
@@ -228,7 +228,7 @@
   .work__title { padding-bottom: 20px; }
   .work__grid {
     flex-direction: column;
-    gap: 48px;
+    gap: 40px;
     margin-top: 32px;
   }
   /* Flatten the columns so cards read 1, 2, 3, 4 */
