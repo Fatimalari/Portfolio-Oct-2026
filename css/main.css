@@ -172,7 +172,7 @@
 .work__grid {
   display: flex;
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 64px;
 }
 
 .work__col {
@@ -229,7 +229,7 @@
   .work__grid {
     flex-direction: column;
     gap: 40px;
-    margin-top: 32px;
+    margin-top: 40px;
   }
   /* Flatten the columns so cards read 1, 2, 3, 4 */
   .work__col { display: contents; }
