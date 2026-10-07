@@ -539,4 +539,20 @@ main > .section:last-child { padding-bottom: 120px; }
 .is-loaded .hero__line + .hero__line { transition-delay: 0.6s; }
 .is-loaded .social { transition-delay: 0.75s; }
 
+/* Block-reveal text animation (js/text-reveal.js) */
+.block-line-wrap {
+  position: relative;
+  display: block;
+  width: fit-content; /* block sweeps only across the text, not the full column */
+  overflow: hidden;
+}
+
+.contact__title .block-line-wrap { margin-inline: auto; }
+
+.block-line-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .nowrap { white-space: nowrap; }
