@@ -27,7 +27,7 @@
     var t = Math.min((now - start) / MIN_DURATION, 1);
     // Hold at 99 until the page has actually loaded
     var value = Math.round(easeOut(t) * (pageReady ? 100 : 99));
-    count.textContent = value;
+    count.textContent = value + "%";
     fill.style.transform = "scaleX(" + value / 100 + ")";
 
     if (value < 100) requestAnimationFrame(tick);

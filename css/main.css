@@ -116,13 +116,13 @@
 }
 
 .preloader__title {
-  font-size: var(--h3-size);
+  font-size: var(--h2-size);
   font-weight: var(--weight-medium);
   line-height: 1.25;
 }
 
 .preloader__count {
-  font-size: var(--text-primary-size);
+  font-size: var(--h3-size);
   font-weight: var(--weight-medium);
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -159,3 +159,5 @@
 }
 
 .is-loaded .hero__line + .hero__line { transition-delay: 0.6s; }
+
+.nowrap { white-space: nowrap; }
