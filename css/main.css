@@ -291,6 +291,37 @@ main > .section:last-child { padding-bottom: 120px; }
   line-height: 1.5;
 }
 
+/* Insight into my work */
+.insights__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.insights__item {
+  aspect-ratio: 413 / 350;
+  overflow: hidden;
+  background: #d9d9d9; /* placeholder until images are added */
+}
+
+.insights__item img,
+.insights__item video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .insights__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 /* Button */
 .button {
   display: inline-block;
