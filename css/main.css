@@ -102,6 +102,7 @@
   display: block;
   width: var(--glyph, 22px);
   height: var(--glyph, 22px);
+  stroke-width: var(--glyph-stroke, 1.75);
 }
 
 /* Purple on hover (desktop) and while tapped (touch screens) */
@@ -140,9 +141,10 @@
 
   /* Mobile: 16px logos in a row below the headline */
   .social {
-    --tile: 40px;
-    --tile-gap: 12px;
+    --tile: 32px;    /* same logo-to-circle ratio as desktop (22/44) */
+    --tile-gap: 13px;
     --glyph: 16px;
+    --glyph-stroke: 2.1; /* keeps lines as bold as desktop at the smaller size */
     position: static;
     flex-direction: row;
     justify-content: flex-start;
