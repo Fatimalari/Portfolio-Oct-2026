@@ -529,9 +529,8 @@ main > .section:last-child { padding-bottom: 120px; }
   transform-origin: left;
 }
 
-/* Hero entrance after the preloader lifts. On desktop the headline uses
-   the block reveal (js/text-reveal.js); the fade-and-rise covers mobile
-   and the social icons. */
+/* Hero entrance after the preloader lifts. The headline uses the block
+   reveal (js/text-reveal.js); the social icons fade and rise. */
 .is-loading .social {
   opacity: 0;
   transform: translateY(40px);
@@ -542,22 +541,6 @@ main > .section:last-child { padding-bottom: 120px; }
   transform: none;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0.75s;
-}
-
-@media (max-width: 767px) {
-  .is-loading .hero__line {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  .is-loaded .hero__line {
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: 0.45s;
-  }
-
-  .is-loaded .hero__line + .hero__line { transition-delay: 0.6s; }
 }
 
 /* Block-reveal text animation (js/text-reveal.js) */
