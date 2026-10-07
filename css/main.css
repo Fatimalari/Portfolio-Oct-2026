@@ -159,20 +159,23 @@
   }
 }
 
-/* Work */
-.work {
-  padding: 120px var(--gutter);
+/* Sections (shared) */
+.section {
+  padding: 120px var(--gutter) 0;
 }
 
-.work__title {
+main > .section:last-child { padding-bottom: 120px; }
+
+.section-title {
+  margin-bottom: 64px;
   padding-bottom: 25px;
   border-bottom: 1px solid var(--color-text);
 }
 
+/* Work */
 .work__grid {
   display: flex;
   gap: 64px;
-  margin-top: 64px;
 }
 
 .work__col {
@@ -224,18 +227,84 @@
 }
 
 @media (max-width: 767px) {
-  .work { padding: 80px var(--gutter); }
-  .work__title { padding-bottom: 20px; }
+  .section { padding-top: 80px; }
+  main > .section:last-child { padding-bottom: 80px; }
+  .section-title {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+  }
+
   .work__grid {
     flex-direction: column;
     gap: 40px;
-    margin-top: 40px;
   }
   /* Flatten the columns so cards read 1, 2, 3, 4 */
   .work__col { display: contents; }
   .work-card { order: var(--order); }
   .work-card__category { margin-top: 16px; }
   .work-card__title { margin-top: 4px; }
+}
+
+/* About */
+.about__grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.about__text,
+.about__media { flex: 1; }
+
+.about__text p {
+  margin: 0 0 27px;
+  max-width: 580px;
+  line-height: 1.5;
+}
+
+.about__text .button { margin-top: 13px; }
+
+.about__media {
+  aspect-ratio: 640 / 392;
+  background: #d9d9d9; /* placeholder until the photo is added */
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  padding: 11px 11px;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  font-size: var(--text-primary-size);
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background: var(--color-text);
+    color: #fff;
+  }
+}
+
+.button:active {
+  background: var(--color-text);
+  color: #fff;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .about__grid {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .about__media { width: 100%; }
+  .about__text p { margin-bottom: 20px; }
+  .about__text .button { margin-top: 4px; }
 }
 
 /* Preloader */
