@@ -139,12 +139,11 @@
   }
   .hero__content { flex: none; }
 
-  /* Mobile: 16px logos in a row below the headline */
+  /* Mobile: 24px logos in 44px circles, in a row below the headline */
   .social {
-    --tile: 32px;    /* same logo-to-circle ratio as desktop (22/44) */
+    --tile: 44px;
     --tile-gap: 13px;
-    --glyph: 16px;
-    --glyph-stroke: 2.1; /* keeps lines as bold as desktop at the smaller size */
+    --glyph: 24px;
     position: static;
     flex-direction: row;
     justify-content: flex-start;
