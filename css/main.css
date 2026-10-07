@@ -71,7 +71,7 @@
   background: #d9d9d9; /* placeholder until the final media is chosen */
 }
 
-/* Social links: 44px outline logos stacked on the right, centred at 40% of the hero */
+/* Social links: outline logos in 44px secondary-colour circles stacked on the right, centred at 40% of the hero */
 .social {
   --tile: 44px;
   --tile-gap: 18px;
@@ -87,20 +87,39 @@
 }
 
 .social__link {
-  display: block;
+  display: grid;
+  place-items: center;
   width: var(--tile);
   height: var(--tile);
   color: var(--color-text);
-  border-radius: 8px;
-  transition: color 0.2s ease;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.social__link svg { display: block; }
+.social__link svg {
+  display: block;
+  width: var(--glyph, 22px);
+  height: var(--glyph, 22px);
+}
 
-.social__link:hover { color: var(--color-accent-strong); }
+/* Purple on hover (desktop) and while tapped (touch screens) */
+.social__link:active,
+.social__link:focus-visible {
+  color: #fff;
+  background: var(--color-accent);
+}
+
+@media (hover: hover) {
+  .social__link:hover {
+    color: #fff;
+    background: var(--color-accent);
+  }
+}
 
 .social__link:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-strong);
   outline-offset: 3px;
 }
 
@@ -119,8 +138,11 @@
   }
   .hero__content { flex: none; }
 
-  /* Mobile: icons sit in a row below the headline */
+  /* Mobile: 16px logos in a row below the headline */
   .social {
+    --tile: 40px;
+    --tile-gap: 12px;
+    --glyph: 16px;
     position: static;
     flex-direction: row;
     justify-content: flex-start;
