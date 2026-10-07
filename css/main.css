@@ -212,11 +212,9 @@
 
 .work-card__title {
   margin-top: 14px;
-  transition: color 0.2s ease;
 }
 
 @media (hover: hover) {
-  .work-card:hover .work-card__title { color: var(--color-accent-strong); }
   .work-card:hover .work-card__media img { transform: scale(1.03); }
 }
 
