@@ -124,28 +124,41 @@
   }
 
   // Mobile hero: the headline wraps, so each wrapped line gets its own block.
+  // SplitText re-splits when fonts finish loading or the width changes, and
+  // each split builds a fresh timeline, so the state lives out here.
   function animateHeroMobile() {
-    var played = false;
-    var current = [];
-    var stopWaiting = whenHeroReady(function (delay) {
-      played = true;
-      current.forEach(function (tl) { tl.delay(delay).play(); });
-    });
+    var startDelay = null; // set once the hero may play
+    var started = false;   // a timeline has begun playing
+    var done = false;      // the intro has finished once
+    var waiting = [];      // timelines created before the hero may play
+
+    function play(tl) {
+      tl.eventCallback("onComplete", function () { done = true; });
+      tl.delay(started ? 0 : startDelay).play();
+    }
 
     document.querySelectorAll(".hero__line").forEach(function (line) {
       animate(line, {
         duration: 0.8,
         stagger: 0.15,
         start: function (tl) {
-          // On a re-split (e.g. rotating the phone) after it has played,
-          // jump straight to the finished state.
-          if (played) tl.progress(1);
-          else current.push(tl);
+          if (done) {
+            tl.progress(1); // e.g. rotating the phone later: no replay
+          } else if (startDelay === null) {
+            waiting.push(tl);
+          } else {
+            play(tl);
+          }
         }
       });
     });
 
-    return stopWaiting;
+    return whenHeroReady(function (delay) {
+      startDelay = delay;
+      waiting.forEach(play);
+      started = true;
+      waiting = [];
+    });
   }
 
   var mm = gsap.matchMedia();
