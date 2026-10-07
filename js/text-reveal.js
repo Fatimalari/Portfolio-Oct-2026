@@ -64,9 +64,53 @@
     });
   }
 
+  // Hero headline: one block per line (the lines don't wrap on desktop),
+  // played once the preloader starts lifting, or right away without it.
+  function animateHero() {
+    var lines = document.querySelectorAll(".hero__line");
+    var inners = document.querySelectorAll(".hero__line-inner");
+    var covers = [];
+
+    lines.forEach(function (line) {
+      var cover = document.createElement("span");
+      cover.className = "block-line-cover";
+      cover.style.backgroundColor = BLOCK_COLOR;
+      line.appendChild(cover);
+      covers.push(cover);
+    });
+
+    gsap.set(inners, { opacity: 0 });
+    gsap.set(covers, { scaleX: 0, transformOrigin: "left center" });
+
+    var tl = gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } })
+      .to(covers, { scaleX: 1, duration: 0.8, stagger: 0.15, transformOrigin: "left center" })
+      .set(inners, { opacity: 1, stagger: 0.15 }, "<0.4")
+      .to(covers, { scaleX: 0, duration: 0.8, stagger: 0.15, transformOrigin: "right center" }, "<0.32");
+
+    var root = document.documentElement;
+    var observer;
+    if (root.classList.contains("is-loading") && !root.classList.contains("is-loaded")) {
+      observer = new MutationObserver(function () {
+        if (root.classList.contains("is-loaded")) {
+          observer.disconnect();
+          tl.delay(0.45).play(); // the preloader panel is mid-way up by then
+        }
+      });
+      observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    } else {
+      tl.delay(0.2).play();
+    }
+
+    return function cleanup() {
+      if (observer) observer.disconnect();
+      covers.forEach(function (c) { c.remove(); });
+    };
+  }
+
   var mm = gsap.matchMedia();
   mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", function () {
-    // gsap.matchMedia reverts the splits and timelines below 768px
+    // gsap.matchMedia reverts the splits, tweens and sets below 768px
     document.querySelectorAll(SELECTORS).forEach(animate);
+    return animateHero();
   });
 })();

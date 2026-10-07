@@ -58,6 +58,13 @@
 }
 
 .hero__line {
+  position: relative; /* holds the block-reveal cover on desktop */
+  display: block;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.hero__line-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -149,7 +156,8 @@
     justify-content: flex-start;
   }
   .hero__title { display: block; line-height: 1.25; }
-  .hero__line { display: block; }
+  .hero__line { display: block; width: auto; overflow: visible; }
+  .hero__line-inner { display: inline; }
   .hero__media {
     display: inline-block;
     width: 56px;
@@ -521,23 +529,36 @@ main > .section:last-child { padding-bottom: 120px; }
   transform-origin: left;
 }
 
-/* Hero entrance after the preloader lifts */
-.is-loading .hero__line,
+/* Hero entrance after the preloader lifts. On desktop the headline uses
+   the block reveal (js/text-reveal.js); the fade-and-rise covers mobile
+   and the social icons. */
 .is-loading .social {
   opacity: 0;
   transform: translateY(40px);
 }
 
-.is-loaded .hero__line,
 .is-loaded .social {
   opacity: 1;
   transform: none;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: 0.45s;
+  transition-delay: 0.75s;
 }
 
-.is-loaded .hero__line + .hero__line { transition-delay: 0.6s; }
-.is-loaded .social { transition-delay: 0.75s; }
+@media (max-width: 767px) {
+  .is-loading .hero__line {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .is-loaded .hero__line {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0.45s;
+  }
+
+  .is-loaded .hero__line + .hero__line { transition-delay: 0.6s; }
+}
 
 /* Block-reveal text animation (js/text-reveal.js) */
 .block-line-wrap {
