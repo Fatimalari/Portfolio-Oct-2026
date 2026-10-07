@@ -6,8 +6,8 @@
   <title>Fatima Lari — UX/UI Designer</title>
   <meta name="description" content="Fatima Lari is a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=3">
-  <link rel="stylesheet" href="css/main.css?v=3">
+  <link rel="stylesheet" href="css/tokens.css?v=4">
+  <link rel="stylesheet" href="css/main.css?v=4">
   <script>
     /* Show the preloader once per visit, and never for reduced-motion users */
     (function () {
@@ -19,7 +19,7 @@
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/preloader.js?v=3" defer></script>
+  <script src="js/preloader.js?v=4" defer></script>
 </head>
 <body>
   <div class="preloader" aria-hidden="true">
@@ -73,6 +73,38 @@
           </a>
         </li>
       </ul>
+    </section>
+
+    <section class="work" id="work" aria-labelledby="work-title">
+      <h2 class="work__title" id="work-title">Work</h2>
+
+      <!-- Two staggered columns; on mobile the cards fall back to 1–4 order -->
+      <div class="work__grid">
+        <div class="work__col">
+          <a class="work-card" href="#" style="--order: 1">
+            <div class="work-card__media work-card__media--wide" aria-hidden="true"></div>
+            <p class="work-card__category">Category</p>
+            <h3 class="work-card__title">Project 1</h3>
+          </a>
+          <a class="work-card" href="#" style="--order: 3">
+            <div class="work-card__media work-card__media--tall" aria-hidden="true"></div>
+            <p class="work-card__category">Category</p>
+            <h3 class="work-card__title">Project 3</h3>
+          </a>
+        </div>
+        <div class="work__col">
+          <a class="work-card" href="#" style="--order: 2">
+            <div class="work-card__media work-card__media--tall" aria-hidden="true"></div>
+            <p class="work-card__category">Category</p>
+            <h3 class="work-card__title">Project 2</h3>
+          </a>
+          <a class="work-card" href="#" style="--order: 4">
+            <div class="work-card__media work-card__media--wide" aria-hidden="true"></div>
+            <p class="work-card__category">Category</p>
+            <h3 class="work-card__title">Project 4</h3>
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 </body>
