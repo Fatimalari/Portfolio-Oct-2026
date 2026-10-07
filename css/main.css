@@ -296,8 +296,7 @@ main > .section:last-child { padding-bottom: 120px; }
   --card-w: 413px;
   --card-h: 350px;
   --card-gap: 64px;
-  margin: 0 calc(-1 * var(--gutter)); /* bleed to the screen edges */
-  overflow: hidden;
+  overflow: hidden; /* cards slide in and out at the 80px margins */
 }
 
 .marquee__track {
@@ -342,7 +341,7 @@ main > .section:last-child { padding-bottom: 120px; }
 /* No auto-motion for people who turn animations off: swipe instead */
 @media (prefers-reduced-motion: reduce) {
   .marquee { overflow-x: auto; }
-  .marquee__track { animation: none; padding-left: var(--gutter); }
+  .marquee__track { animation: none; }
   .marquee__group[aria-hidden="true"] { display: none; }
 }
 
