@@ -71,39 +71,37 @@
   background: #d9d9d9; /* placeholder until the final media is chosen */
 }
 
-/* Social links: vertical stack, centred on the right edge */
+/* Social links: 44px logo tiles stacked on the right, centred at 40% of the hero */
 .social {
+  --tile: 44px;
+  --tile-gap: 18px;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: calc(var(--gutter) - 10px); /* -10px lines the icon glyphs up with the margin */
+  right: var(--gutter);
+  top: calc(40% - (2 * var(--tile) + var(--tile-gap)) / 2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 12px;
+  gap: var(--tile-gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .social__link {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
+  display: block;
+  width: var(--tile);
+  height: var(--tile);
   color: var(--color-text);
-  border-radius: 50%;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 8px;
+  transition: color 0.2s ease;
 }
 
-.social__link:hover {
-  color: var(--color-accent-strong);
-  background: var(--color-secondary);
-}
+.social__link svg { display: block; }
+
+.social__link:hover { color: var(--color-accent-strong); }
 
 .social__link:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 @media (max-width: 767px) {
@@ -126,7 +124,6 @@
     position: static;
     flex-direction: row;
     justify-content: flex-start;
-    margin-left: -10px; /* lines the first glyph up with the text */
   }
   .hero__title { display: block; line-height: 1.25; }
   .hero__line { display: block; }
