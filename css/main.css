@@ -112,7 +112,22 @@
   .site-header__nav { gap: 16px; }
   .site-header__nav a { font-size: var(--text-secondary-size); }
 
-  .hero { padding: 96px var(--gutter) 40px; }
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    gap: 24px;
+    padding: 96px var(--gutter) 40px;
+  }
+  .hero__content { flex: none; }
+
+  /* Mobile: icons sit in a row below the headline */
+  .social {
+    position: static;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: -10px; /* lines the first glyph up with the text */
+  }
   .hero__title { display: block; line-height: 1.25; }
   .hero__line { display: block; }
   .hero__media {
