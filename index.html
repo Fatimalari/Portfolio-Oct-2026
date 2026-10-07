@@ -6,8 +6,8 @@
   <title>Fatima Lari — UX/UI Designer</title>
   <meta name="description" content="Fatima Lari is a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=12">
-  <link rel="stylesheet" href="css/main.css?v=12">
+  <link rel="stylesheet" href="css/tokens.css?v=13">
+  <link rel="stylesheet" href="css/main.css?v=13">
   <script>
     /* Show the preloader once per visit, and never for reduced-motion users */
     (function () {
@@ -19,7 +19,7 @@
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/preloader.js?v=12" defer></script>
+  <script src="js/preloader.js?v=13" defer></script>
 </head>
 <body>
   <div class="preloader" aria-hidden="true">
@@ -151,12 +151,29 @@
     <section class="section insights" id="insights" aria-labelledby="insights-title">
       <h2 class="section-title" id="insights-title">Insight into my work</h2>
 
-      <!-- Placeholders: replace each <li> content with an image or video -->
-      <ul class="insights__grid">
-        <li class="insights__item" aria-hidden="true"></li>
-        <li class="insights__item" aria-hidden="true"></li>
-        <li class="insights__item" aria-hidden="true"></li>
-      </ul>
+      <!-- Marquee: the second group repeats the first so the loop is seamless.
+           Placeholders repeat the 3 images twice per group (1,2,3,1,2,3);
+           put an <img> inside each <li> and keep both groups identical. -->
+      <div class="marquee">
+        <div class="marquee__track">
+          <ul class="marquee__group">
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+          </ul>
+          <ul class="marquee__group" aria-hidden="true">
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+            <li class="marquee__item"></li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 
