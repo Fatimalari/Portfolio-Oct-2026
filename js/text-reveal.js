@@ -12,10 +12,15 @@
   // Two blocks per line: the secondary colour leads, the accent follows
   var FIRST_COLOR = rootStyle.getPropertyValue("--color-secondary").trim() || "#f7f4f8";
   var SECOND_COLOR = rootStyle.getPropertyValue("--color-accent").trim() || "#9469f3";
+  // Inside the secondary-colour panels the first block would be invisible,
+  // so there it uses white (the primary colour) instead
+  var PANEL_FIRST_COLOR = rootStyle.getPropertyValue("--color-primary").trim() || "#ffffff";
+  var PANELS = ".about__panel, .site-footer__panel";
 
   // Adds both blocks to a positioned element and returns them [first, second]
   function addCovers(parent) {
-    return [FIRST_COLOR, SECOND_COLOR].map(function (color) { return addCover(parent, color); });
+    var first = parent.closest(PANELS) ? PANEL_FIRST_COLOR : FIRST_COLOR;
+    return [first, SECOND_COLOR].map(function (color) { return addCover(parent, color); });
   }
 
   function addCover(parent, color) {
