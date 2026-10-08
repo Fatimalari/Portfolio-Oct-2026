@@ -329,8 +329,9 @@ main > .section:last-child { padding-bottom: 120px; }
 
 .about__text .button { margin-top: 13px; }
 
+/* Upper-body portrait: a 4:5 frame zoomed in on the face and shoulders,
+   aligned to the right margin */
 .about__media {
-  aspect-ratio: 640 / 392;
   display: flex;
   justify-content: flex-end;
 }
@@ -339,34 +340,24 @@ main > .section:last-child { padding-bottom: 120px; }
   position: relative;
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--color-secondary); /* shows while the photo loads */
 }
 
 .about__media img {
-  position: absolute; /* the box sets the size, never the photo */
-  top: 0;
-  right: 0;
+  position: absolute; /* the frame sets the size, never the photo */
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 30%; /* portrait photo: keep the face and shirt in frame */
+  transform: scale(1.55); /* zoom from the full-length photo to head-to-waist */
+  transform-origin: 50% 30%; /* keeps the face in the upper third */
 }
 
-/* Desktop/tablet: the whole photo, uncropped. The frame takes the
-   photo's own 3:4 shape at 69% of the column width, aligned right. */
 @media (min-width: 768px) {
-  .about__media { aspect-ratio: auto; }
-
-  .about__media picture {
-    width: 69%;
-    height: auto;
-    aspect-ratio: 3 / 4;
-  }
-
-  .about__media img { object-position: center; }
+  .about__media picture { width: 64%; }
 }
 
 /* Experience */
