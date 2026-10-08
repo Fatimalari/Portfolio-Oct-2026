@@ -203,6 +203,8 @@ main > .section:last-child { padding-bottom: 120px; }
 .work-card__media--wide { aspect-ratio: 640 / 445; }
 .work-card__media--tall { aspect-ratio: 640 / 630; }
 
+.work-card__media picture { display: block; height: 100%; }
+
 .work-card__media img {
   display: block;
   width: 100%;
