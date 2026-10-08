@@ -1,14 +1,63 @@
 /* Block-reveal text animation (vanilla port of the TextBlockAnimation
-   React component). Each line of text is covered by a sweeping colour
-   block: the block grows left → right, the text appears halfway, then
-   the block shrinks away to the right. Plays when the text scrolls into
+   React component). On desktop each line of text is covered by two
+   sweeping blocks: a secondary-colour block grows left → right with the
+   accent block close behind, the text appears, then the accent and
+   secondary blocks shrink away to the right in turn. Mobile uses the
+   single accent block. Plays when the text scrolls into
    view and reverses when you scroll back above it.
    Runs on desktop and mobile; skipped for people who prefer reduced motion. */
 (function () {
   gsap.registerPlugin(SplitText, ScrollTrigger);
 
-  var BLOCK_COLOR = getComputedStyle(document.documentElement)
-    .getPropertyValue("--color-accent").trim() || "#9469f3";
+  var rootStyle = getComputedStyle(document.documentElement);
+  // Two blocks per line: the secondary colour leads, the accent follows
+  var FIRST_COLOR = rootStyle.getPropertyValue("--color-secondary").trim() || "#f7f4f8";
+  var SECOND_COLOR = rootStyle.getPropertyValue("--color-accent").trim() || "#9469f3";
+
+  // Two-colour blocks on desktop; mobile keeps the single accent block
+  // for now. Set per breakpoint in the matchMedia callback below.
+  var twoTone = true;
+
+  // Adds the blocks to a positioned element and returns them [first, second]
+  // (first is null when only the accent block is used)
+  function addCovers(parent) {
+    if (!twoTone) return [null, addCover(parent, SECOND_COLOR)];
+    return [FIRST_COLOR, SECOND_COLOR].map(function (color) { return addCover(parent, color); });
+  }
+
+  function addCover(parent, color) {
+    var cover = document.createElement("span");
+    cover.className = "block-line-cover";
+    cover.style.backgroundColor = color;
+    parent.appendChild(cover);
+    return cover;
+  }
+
+  // first sweeps in, second follows; the text appears once the second
+  // covers it; then the second sweeps out, uncovering the first, which
+  // follows it out to reveal the text
+  function blockTimeline(tl, firsts, seconds, texts, duration, stagger) {
+    firsts = firsts.filter(Boolean);
+    gsap.set(texts, { opacity: 0 });
+    gsap.set(firsts.concat(seconds), { scaleX: 0, transformOrigin: "left center" });
+
+    if (!firsts.length) {
+      // single block: grow, show text halfway, shrink away to the right
+      return tl
+        .to(seconds, { scaleX: 1, duration: duration, stagger: stagger, transformOrigin: "left center" })
+        .set(texts, { opacity: 1, stagger: stagger }, "<" + duration / 2)
+        .to(seconds, { scaleX: 0, duration: duration, stagger: stagger, transformOrigin: "right center" }, "<" + duration * 0.4);
+    }
+
+    var lag = duration * 0.3;
+    return tl
+      .to(firsts, { scaleX: 1, duration: duration, stagger: stagger, transformOrigin: "left center" })
+      .to(seconds, { scaleX: 1, duration: duration, stagger: stagger, transformOrigin: "left center" }, "<" + lag)
+      .set(texts, { opacity: 1, stagger: stagger }, "<" + duration * 0.6)
+      .to(seconds, { scaleX: 0, duration: duration, stagger: stagger, transformOrigin: "right center" }, "<" + duration * 0.3)
+      .to(firsts, { scaleX: 0, duration: duration, stagger: stagger, transformOrigin: "right center" }, "<" + lag);
+  }
+
   var DURATION = 0.6;
   var STAGGER = 0.1;
 
@@ -35,25 +84,20 @@
       linesClass: "block-line",
       autoSplit: true,
       onSplit: function (self) {
-        var blocks = [];
+        var firsts = [];
+        var seconds = [];
 
         self.lines.forEach(function (line) {
           var wrapper = document.createElement("span");
           wrapper.className = "block-line-wrap";
-          var block = document.createElement("span");
-          block.className = "block-line-cover";
-          block.style.backgroundColor = BLOCK_COLOR;
-
           line.parentNode.insertBefore(wrapper, line);
           wrapper.appendChild(line);
-          wrapper.appendChild(block);
-          blocks.push(block);
+          var covers = addCovers(wrapper);
+          firsts.push(covers[0]);
+          seconds.push(covers[1]);
         });
 
-        gsap.set(self.lines, { opacity: 0 });
-        gsap.set(blocks, { scaleX: 0, transformOrigin: "left center" });
-
-        var tl = gsap.timeline({
+        var tl = blockTimeline(gsap.timeline({
           paused: !!opts.start,
           defaults: { ease: "expo.inOut" },
           scrollTrigger: opts.start ? null : {
@@ -63,10 +107,7 @@
             start: el.closest(".site-footer__bar") ? "top bottom" : "top 85%",
             toggleActions: "play none none reverse"
           }
-        })
-          .to(blocks, { scaleX: 1, duration: duration, stagger: stagger, transformOrigin: "left center" })
-          .set(self.lines, { opacity: 1, stagger: stagger }, "<" + duration / 2)
-          .to(blocks, { scaleX: 0, duration: duration, stagger: stagger, transformOrigin: "right center" }, "<" + duration * 0.4);
+        }), firsts, seconds, self.lines, duration, stagger);
 
         if (opts.start) opts.start(tl);
         return tl;
@@ -96,30 +137,24 @@
   // played once the preloader starts lifting, or right away without it.
   function animateHero() {
     var lines = document.querySelectorAll(".hero__line");
-    var inners = document.querySelectorAll(".hero__line-inner");
-    var covers = [];
+    var inners = gsap.utils.toArray(".hero__line-inner");
+    var firsts = [];
+    var seconds = [];
 
     lines.forEach(function (line) {
-      var cover = document.createElement("span");
-      cover.className = "block-line-cover";
-      cover.style.backgroundColor = BLOCK_COLOR;
-      line.appendChild(cover);
-      covers.push(cover);
+      var covers = addCovers(line);
+      firsts.push(covers[0]);
+      seconds.push(covers[1]);
     });
 
-    gsap.set(inners, { opacity: 0 });
-    gsap.set(covers, { scaleX: 0, transformOrigin: "left center" });
-
-    var tl = gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } })
-      .to(covers, { scaleX: 1, duration: 0.8, stagger: 0.15, transformOrigin: "left center" })
-      .set(inners, { opacity: 1, stagger: 0.15 }, "<0.4")
-      .to(covers, { scaleX: 0, duration: 0.8, stagger: 0.15, transformOrigin: "right center" }, "<0.32");
+    var tl = blockTimeline(gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } }),
+      firsts, seconds, inners, 0.8, 0.15);
 
     var stopWaiting = whenHeroReady(function (delay) { tl.delay(delay).play(); });
 
     return function cleanup() {
       stopWaiting();
-      covers.forEach(function (c) { c.remove(); });
+      firsts.concat(seconds).forEach(function (c) { if (c) c.remove(); });
     };
   }
 
@@ -170,6 +205,7 @@
     // breakpoint changes
     var c = context.conditions;
     if (!c.desktop && !c.mobile) return;
+    twoTone = c.desktop;
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
     return c.desktop ? animateHero() : animateHeroMobile();
   });
