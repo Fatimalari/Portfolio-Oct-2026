@@ -200,8 +200,8 @@ main > .section:last-child { padding-bottom: 120px; }
   background: #d9d9d9; /* placeholder until project covers are added */
 }
 
+/* All project covers share the Passion Projects shape */
 .work-card__media--wide { aspect-ratio: 640 / 445; }
-.work-card__media--tall { aspect-ratio: 640 / 630; }
 
 .work-card__media picture { display: block; height: 100%; }
 
