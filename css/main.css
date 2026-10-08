@@ -311,15 +311,21 @@ main > .section:last-child { padding-bottom: 120px; }
   .work-card__title { margin-top: 4px; }
 }
 
-/* About */
+/* About: everything sits in a secondary-colour panel on the page margins */
+.about__panel {
+  padding: 40px;
+  background: var(--color-secondary);
+}
+
+.about__panel .section-title { margin-bottom: 40px; }
+
 .about__grid {
   display: flex;
   align-items: flex-start;
   gap: 64px;
 }
 
-.about__text,
-.about__media { flex: 1; }
+.about__text { flex: 1; }
 
 .about__text p {
   margin: 0 0 27px;
@@ -329,20 +335,17 @@ main > .section:last-child { padding-bottom: 120px; }
 
 .about__text .button { margin-top: 13px; }
 
-/* Upper-body portrait: a 4:5 frame zoomed in on the face and shoulders,
-   aligned to the right margin */
+/* Photo: 424:392 frame, right column (about 40% of the panel's content) */
 .about__media {
-  display: flex;
-  justify-content: flex-end;
+  flex: 0 0 40%;
 }
 
 .about__media picture {
   position: relative;
   display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 424 / 392;
   overflow: hidden;
-  background: var(--color-secondary); /* shows while the photo loads */
+  background: var(--color-border); /* shows while the photo loads */
 }
 
 .about__media img {
@@ -352,12 +355,7 @@ main > .section:last-child { padding-bottom: 120px; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.55); /* zoom from the full-length photo to head-to-waist */
-  transform-origin: 50% 30%; /* keeps the face in the upper third */
-}
-
-@media (min-width: 768px) {
-  .about__media picture { width: 64%; }
+  object-position: 50% 30%;
 }
 
 /* Experience */
@@ -550,7 +548,9 @@ main > .section:last-child { padding-bottom: 120px; }
     flex-direction: column;
     gap: 40px;
   }
-  .about__media { width: 100%; }
+  .about__panel { padding: 24px 20px; }
+  .about__panel .section-title { margin-bottom: 24px; }
+  .about__media { flex: none; width: 100%; }
   .about__text p { margin-bottom: 20px; }
   .about__text .button { margin-top: 4px; }
 }
