@@ -34,7 +34,14 @@
   text-decoration: none;
 }
 
-.site-header a:hover { color: var(--color-accent-strong); }
+/* Nav links turn purple on hover only once the block sweep has covered
+   them (js/text-reveal.js adds .is-hovered); the logo keeps its colour.
+   Without the sweep (reduced motion) they simply turn purple on hover. */
+.site-header__nav a.is-hovered { color: var(--color-accent-strong); }
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .site-header__nav a:hover { color: var(--color-accent-strong); }
+}
 
 .site-header a:focus-visible {
   outline: 2px solid var(--color-accent);

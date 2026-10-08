@@ -213,28 +213,48 @@
   });
 
   // Header nav (About, Resume): the same two-colour block sweep plays over
-  // the link on hover or keyboard focus. The text stays put underneath.
+  // the link on hover or keyboard focus. While the accent block covers the
+  // text, the link switches to purple, so the sweep reveals it purple; it
+  // stays purple until the pointer (or focus) leaves.
   function navHover() {
     var cleanups = [];
 
     document.querySelectorAll(".site-header__nav a").forEach(function (link) {
       var covers = addCovers(link);
+      var active = false; // hovered or focused right now
       gsap.set(covers, { scaleX: 0, transformOrigin: "left center" });
 
       var lag = DURATION * 0.3;
       var tl = gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } })
         .to(covers[0], { scaleX: 1, duration: DURATION, transformOrigin: "left center" })
         .to(covers[1], { scaleX: 1, duration: DURATION, transformOrigin: "left center" }, "<" + lag)
-        .to(covers[1], { scaleX: 0, duration: DURATION, transformOrigin: "right center" }, "<" + DURATION * 0.6)
+        .addLabel("covered", "<" + DURATION * 0.6)
+        .call(function () { link.classList.toggle("is-hovered", active); }, null, "covered")
+        .to(covers[1], { scaleX: 0, duration: DURATION, transformOrigin: "right center" }, "<")
         .to(covers[0], { scaleX: 0, duration: DURATION, transformOrigin: "right center" }, "<" + lag);
 
-      function play() { if (!tl.isActive()) tl.restart(); }
-      link.addEventListener("mouseenter", play);
-      link.addEventListener("focus", play);
+      function enter() {
+        active = true;
+        if (!tl.isActive()) tl.restart();
+        // back over the link after the sweep already passed its covered point
+        else if (tl.time() >= tl.labels.covered) link.classList.add("is-hovered");
+      }
+      function leave() {
+        if (link.matches(":hover") || document.activeElement === link) return;
+        active = false;
+        link.classList.remove("is-hovered");
+      }
+      link.addEventListener("mouseenter", enter);
+      link.addEventListener("focus", enter);
+      link.addEventListener("mouseleave", leave);
+      link.addEventListener("blur", leave);
 
       cleanups.push(function () {
-        link.removeEventListener("mouseenter", play);
-        link.removeEventListener("focus", play);
+        link.removeEventListener("mouseenter", enter);
+        link.removeEventListener("focus", enter);
+        link.removeEventListener("mouseleave", leave);
+        link.removeEventListener("blur", leave);
+        link.classList.remove("is-hovered");
         tl.kill();
         covers.forEach(function (c) { c.remove(); });
       });
