@@ -62,21 +62,12 @@
   display: block;
   width: fit-content;
   overflow: hidden;
+  /* room for descenders (g, y) inside the clipped box, without moving the lines */
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
 }
 
-.hero__line-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: 24px;
-}
-
-.hero__media {
-  flex: none;
-  width: 100px;
-  height: 100px;
-  background: #d9d9d9; /* placeholder until the final media is chosen */
-}
+.hero__line-inner { display: block; }
 
 /* Social links: outline logos in 44px secondary-colour circles stacked on the right, centred at 40% of the hero */
 .social {
@@ -223,13 +214,6 @@
   .hero__title { display: block; line-height: 1.25; }
   .hero__line { display: block; width: auto; overflow: visible; }
   .hero__line-inner { display: inline; }
-  .hero__media {
-    display: inline-block;
-    width: 56px;
-    height: 56px;
-    margin: 0 2px;
-    vertical-align: middle;
-  }
 }
 
 /* Sections (shared) */
