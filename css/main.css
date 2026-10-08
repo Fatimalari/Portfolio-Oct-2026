@@ -52,7 +52,7 @@
   padding: 120px var(--gutter) 62px;
 }
 
-.hero__content { flex: 1; }
+.hero__content { flex: 1; min-width: 0; } /* lets the tools strip clip instead of widening the page */
 
 .hero__title {
   display: flex;
@@ -80,6 +80,66 @@
 }
 
 .hero__line-inner { display: block; }
+
+/* Tools strip under the headline: logos and names scrolling left in a
+   loop. The track holds four identical groups, so moving it a quarter of
+   its width lands exactly where it started. The edges fade out. */
+.tools {
+  --tools-gap: 56px;
+  margin-top: 56px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tools__track {
+  display: flex;
+  width: max-content;
+  animation: tools-scroll 24s linear infinite;
+}
+
+.tools__group {
+  display: flex;
+  gap: var(--tools-gap);
+  margin: 0;
+  padding: 0 var(--tools-gap) 0 0; /* even gap where the groups meet */
+  list-style: none;
+}
+
+.tools__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+.tools__item svg {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+@keyframes tools-scroll {
+  to { transform: translateX(-25%); }
+}
+
+/* No auto-motion for people who turn animations off: one static row */
+@media (prefers-reduced-motion: reduce) {
+  .tools { -webkit-mask-image: none; mask-image: none; }
+  .tools__track { width: auto; animation: none; }
+  .tools__group { flex-wrap: wrap; row-gap: 20px; padding: 0; }
+  .tools__group[aria-hidden="true"] { display: none; }
+}
+
+@media (max-width: 767px) {
+  .tools { --tools-gap: 36px; margin-top: 32px; }
+  .tools__item { gap: 10px; font-size: 18px; }
+  .tools__item svg { width: 22px; height: 22px; }
+}
 
 /* Social links: outline logos in 44px secondary-colour circles stacked on the right, centred at 40% of the hero */
 .social {
@@ -558,12 +618,14 @@ main > .section:last-child { padding-bottom: 120px; }
 
 /* Hero entrance after the preloader lifts. The headline uses the block
    reveal (js/text-reveal.js); the social icons fade and rise. */
-.is-loading .social {
+.is-loading .social,
+.is-loading .tools {
   opacity: 0;
   transform: translateY(40px);
 }
 
-.is-loaded .social {
+.is-loaded .social,
+.is-loaded .tools {
   opacity: 1;
   transform: none;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
