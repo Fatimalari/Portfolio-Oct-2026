@@ -93,13 +93,14 @@
   list-style: none;
 }
 
-/* Hero hover card: 224×266, 40px left of the social icons, bottoms aligned */
+/* Hero hover card: 224×266, 40px left of the social icons, sitting just
+   under the header (fixed distance from the top on any screen height) */
 .hero-card {
   --card-w: 224px;
   --card-h: 266px;
   position: absolute;
   right: calc(var(--gutter) + 44px + 40px);
-  top: calc(40% + (2 * 44px + 18px) / 2 - var(--card-h));
+  top: 150px;
   width: var(--card-w);
   height: var(--card-h);
 }
