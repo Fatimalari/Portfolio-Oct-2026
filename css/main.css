@@ -60,6 +60,25 @@
   gap: 26px;
 }
 
+/* Headline with the "Hire me" button at the right margin, its bottom
+   level with the last line. Where the screen is too narrow for both,
+   the button drops below the headline and stays on the right. */
+.hero__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px 40px;
+}
+
+.hero .hero__cta {
+  flex: none;
+  margin-left: auto;
+  margin-bottom: 0.15em; /* sits on the headline's baseline, not its descender room */
+  padding: 22px 52px;
+  font-weight: var(--weight-medium);
+}
+
 /* Desktop: keep the headline on two lines inside the 150px margins by
    scaling it down slightly when the content area is narrower than the
    64px line needs (~18.4em wide; 18.8 leaves room for a scrollbar) */
@@ -208,6 +227,7 @@
     padding: 96px var(--gutter) 40px;
   }
   .hero__content { flex: none; }
+  .hero .hero__cta { display: none; } /* mobile placement comes next */
 
   /* Mobile: 24px logos in 44px circles, in a row above the headline */
   .social {
@@ -620,17 +640,25 @@ main > .section:last-child { padding-bottom: 120px; }
 /* Hero entrance after the preloader lifts. The headline uses the block
    reveal (js/text-reveal.js); the social icons fade and rise. */
 .is-loading .social,
-.is-loading .tools {
+.is-loading .tools,
+.is-loading .hero__cta {
   opacity: 0;
   transform: translateY(40px);
 }
 
 .is-loaded .social,
-.is-loaded .tools {
+.is-loaded .tools,
+.is-loaded .hero__cta {
   opacity: 1;
   transform: none;
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0.75s;
+}
+
+/* keep the button's quick hover fill after the entrance */
+.is-loaded .hero__cta {
+  transition: opacity 0.8s ease 0.75s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.75s,
+              background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Block-reveal text animation (js/text-reveal.js) */
