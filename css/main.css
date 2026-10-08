@@ -209,8 +209,9 @@
   }
   .hero__content { flex: none; }
 
-  /* Mobile: 24px logos in 44px circles, in a row below the headline */
+  /* Mobile: 24px logos in 44px circles, in a row above the headline */
   .social {
+    order: -1;
     --tile: 44px;
     --tile-gap: 13px;
     --glyph: 24px;
