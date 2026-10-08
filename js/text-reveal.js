@@ -1,9 +1,8 @@
 /* Block-reveal text animation (vanilla port of the TextBlockAnimation
-   React component). On desktop each line of text is covered by two
-   sweeping blocks: a secondary-colour block grows left → right with the
-   accent block close behind, the text appears, then the accent and
-   secondary blocks shrink away to the right in turn. Mobile uses the
-   single accent block. Plays when the text scrolls into
+   React component). Each line of text is covered by two sweeping blocks:
+   a secondary-colour block grows left → right with the accent block close
+   behind, the text appears, then the accent and secondary blocks shrink
+   away to the right in turn. Plays when the text scrolls into
    view and reverses when you scroll back above it.
    Runs on desktop and mobile; skipped for people who prefer reduced motion. */
 (function () {
@@ -14,14 +13,8 @@
   var FIRST_COLOR = rootStyle.getPropertyValue("--color-secondary").trim() || "#f7f4f8";
   var SECOND_COLOR = rootStyle.getPropertyValue("--color-accent").trim() || "#9469f3";
 
-  // Two-colour blocks on desktop; mobile keeps the single accent block
-  // for now. Set per breakpoint in the matchMedia callback below.
-  var twoTone = true;
-
-  // Adds the blocks to a positioned element and returns them [first, second]
-  // (first is null when only the accent block is used)
+  // Adds both blocks to a positioned element and returns them [first, second]
   function addCovers(parent) {
-    if (!twoTone) return [null, addCover(parent, SECOND_COLOR)];
     return [FIRST_COLOR, SECOND_COLOR].map(function (color) { return addCover(parent, color); });
   }
 
@@ -37,17 +30,8 @@
   // covers it; then the second sweeps out, uncovering the first, which
   // follows it out to reveal the text
   function blockTimeline(tl, firsts, seconds, texts, duration, stagger) {
-    firsts = firsts.filter(Boolean);
     gsap.set(texts, { opacity: 0 });
     gsap.set(firsts.concat(seconds), { scaleX: 0, transformOrigin: "left center" });
-
-    if (!firsts.length) {
-      // single block: grow, show text halfway, shrink away to the right
-      return tl
-        .to(seconds, { scaleX: 1, duration: duration, stagger: stagger, transformOrigin: "left center" })
-        .set(texts, { opacity: 1, stagger: stagger }, "<" + duration / 2)
-        .to(seconds, { scaleX: 0, duration: duration, stagger: stagger, transformOrigin: "right center" }, "<" + duration * 0.4);
-    }
 
     var lag = duration * 0.3;
     return tl
@@ -154,7 +138,7 @@
 
     return function cleanup() {
       stopWaiting();
-      firsts.concat(seconds).forEach(function (c) { if (c) c.remove(); });
+      firsts.concat(seconds).forEach(function (c) { c.remove(); });
     };
   }
 
@@ -205,7 +189,6 @@
     // breakpoint changes
     var c = context.conditions;
     if (!c.desktop && !c.mobile) return;
-    twoTone = c.desktop;
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
     return c.desktop ? animateHero() : animateHeroMobile();
   });
