@@ -128,10 +128,20 @@
   object-fit: cover;
 }
 
+/* Slide out on hover (mouse) or after a tap/click (toggles .is-open) */
+.hero-card.is-open .hero-card__img--back {
+  transform: translateX(-62%) rotate(-6deg);
+}
+
 @media (hover: hover) {
   .hero-card:hover .hero-card__img--back {
     transform: translateX(-62%) rotate(-6deg);
   }
+}
+
+.hero-card {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .social__link {
@@ -187,7 +197,18 @@
   }
   .hero__content { flex: none; }
 
-  .hero-card { display: none; } /* desktop/tablet only for now */
+  /* Mobile: smaller card above the headline, on the right so the back
+     square has room to slide out to the left */
+  .hero-card {
+    --card-w: 168px;
+    --card-h: 200px;
+    position: relative;
+    top: auto;
+    right: auto;
+    order: -1;
+    align-self: flex-end;
+    margin-bottom: 16px;
+  }
 
   /* Mobile: 24px logos in 44px circles, in a row below the headline */
   .social {
