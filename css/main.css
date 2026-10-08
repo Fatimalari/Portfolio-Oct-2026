@@ -25,6 +25,9 @@
 }
 
 .site-header__nav a {
+  position: relative; /* holds the hover block-sweep covers */
+  display: inline-block;
+  overflow: hidden;
   font-size: var(--text-primary-size);
   line-height: 1;
   color: var(--color-text);

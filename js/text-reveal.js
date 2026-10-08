@@ -197,4 +197,37 @@
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
     return c.desktop ? animateHero() : animateHeroMobile();
   });
+
+  // Header nav (About, Resume): the same two-colour block sweep plays over
+  // the link on hover or keyboard focus. The text stays put underneath.
+  function navHover() {
+    var cleanups = [];
+
+    document.querySelectorAll(".site-header__nav a").forEach(function (link) {
+      var covers = addCovers(link);
+      gsap.set(covers, { scaleX: 0, transformOrigin: "left center" });
+
+      var lag = DURATION * 0.3;
+      var tl = gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } })
+        .to(covers[0], { scaleX: 1, duration: DURATION, transformOrigin: "left center" })
+        .to(covers[1], { scaleX: 1, duration: DURATION, transformOrigin: "left center" }, "<" + lag)
+        .to(covers[1], { scaleX: 0, duration: DURATION, transformOrigin: "right center" }, "<" + DURATION * 0.6)
+        .to(covers[0], { scaleX: 0, duration: DURATION, transformOrigin: "right center" }, "<" + lag);
+
+      function play() { if (!tl.isActive()) tl.restart(); }
+      link.addEventListener("mouseenter", play);
+      link.addEventListener("focus", play);
+
+      cleanups.push(function () {
+        link.removeEventListener("mouseenter", play);
+        link.removeEventListener("focus", play);
+        tl.kill();
+        covers.forEach(function (c) { c.remove(); });
+      });
+    });
+
+    return function () { cleanups.forEach(function (fn) { fn(); }); };
+  }
+
+  mm.add("(hover: hover) and (prefers-reduced-motion: no-preference)", navHover);
 })();
