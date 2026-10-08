@@ -323,7 +323,7 @@ main > .section:last-child { padding-bottom: 120px; }
 
 /* Insight into my work: auto-scrolling marquee */
 .marquee {
-  --card-w: 413px;
+  --card-w: 504px; /* matches the 1200×833 shots, so nothing is cropped */
   --card-h: 350px;
   --card-gap: 64px;
   overflow: hidden; /* cards slide in and out at the 80px margins */
@@ -332,7 +332,7 @@ main > .section:last-child { padding-bottom: 120px; }
 .marquee__track {
   display: flex;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 .marquee:hover .marquee__track,
@@ -353,8 +353,10 @@ main > .section:last-child { padding-bottom: 120px; }
   width: var(--card-w);
   height: var(--card-h);
   overflow: hidden;
-  background: #d9d9d9; /* placeholder until images are added */
+  background: var(--color-secondary);
 }
+
+.marquee__item picture { display: block; height: 100%; }
 
 .marquee__item img,
 .marquee__item video {
@@ -377,11 +379,11 @@ main > .section:last-child { padding-bottom: 120px; }
 
 @media (max-width: 767px) {
   .marquee {
-    --card-w: 260px;
+    --card-w: 317px;
     --card-h: 220px;
     --card-gap: 40px;
   }
-  .marquee__track { animation-duration: 30s; }
+  .marquee__track { animation-duration: 24s; }
 }
 
 /* Contact + footer */

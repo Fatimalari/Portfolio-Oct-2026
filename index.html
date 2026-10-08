@@ -6,8 +6,8 @@
   <title>Fatima Lari — UX/UI Designer</title>
   <meta name="description" content="Fatima Lari is a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=51">
-  <link rel="stylesheet" href="css/main.css?v=51">
+  <link rel="stylesheet" href="css/tokens.css?v=52">
+  <link rel="stylesheet" href="css/main.css?v=52">
   <script>
     /* Show the preloader once per visit, and never for reduced-motion users */
     (function () {
@@ -19,11 +19,11 @@
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/preloader.js?v=51" defer></script>
-  <script src="js/vendor/gsap.min.js?v=51" defer></script>
-  <script src="js/vendor/ScrollTrigger.min.js?v=51" defer></script>
-  <script src="js/vendor/SplitText.min.js?v=51" defer></script>
-  <script src="js/text-reveal.js?v=51" defer></script>
+  <script src="js/preloader.js?v=52" defer></script>
+  <script src="js/vendor/gsap.min.js?v=52" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js?v=52" defer></script>
+  <script src="js/vendor/SplitText.min.js?v=52" defer></script>
+  <script src="js/text-reveal.js?v=52" defer></script>
 </head>
 <body>
   <div class="preloader" aria-hidden="true">
@@ -183,26 +183,61 @@
     <section class="section insights" id="insights" aria-labelledby="insights-title">
       <h2 class="section-title" id="insights-title">Insight into my work</h2>
 
-      <!-- Marquee: the second group repeats the first so the loop is seamless.
-           Placeholders repeat the 3 images twice per group (1,2,3,1,2,3);
-           put an <img> inside each <li> and keep both groups identical. -->
+      <!-- Marquee: the second group repeats the first so the loop is seamless;
+           keep both groups identical (the copy has empty alt text). -->
       <div class="marquee">
         <div class="marquee__track">
           <ul class="marquee__group">
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/vow-collections.webp" type="image/webp">
+                <img src="images/insights/vow-collections.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="Vow Collections wedding photography website: hero, gallery strip and services">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/fatima-dental.webp" type="image/webp">
+                <img src="images/insights/fatima-dental.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="Fatima Dental clinic website: “We care about your smile” hero, about, FAQ and booking form">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/jorneo.webp" type="image/webp">
+                <img src="images/insights/jorneo.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="Jorneo travel website: “Skardu awaits” mountain hero, packages, testimonials and FAQ">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/solera.webp" type="image/webp">
+                <img src="images/insights/solera.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="Solera solar energy website: hero, stats, features and newsletter footer">
+              </picture>
+            </li>
           </ul>
           <ul class="marquee__group" aria-hidden="true">
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
-            <li class="marquee__item"></li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/vow-collections.webp" type="image/webp">
+                <img src="images/insights/vow-collections.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/fatima-dental.webp" type="image/webp">
+                <img src="images/insights/fatima-dental.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/jorneo.webp" type="image/webp">
+                <img src="images/insights/jorneo.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="">
+              </picture>
+            </li>
+            <li class="marquee__item">
+              <picture>
+                <source srcset="images/insights/solera.webp" type="image/webp">
+                <img src="images/insights/solera.jpg" width="1200" height="833" loading="lazy" decoding="async" alt="">
+              </picture>
+            </li>
           </ul>
         </div>
       </div>
