@@ -46,6 +46,11 @@
   }
 }
 
+/* Desktop: 120px side margins across the homepage */
+@media (min-width: 1200px) {
+  :root { --gutter: 120px; }
+}
+
 /* Base type styles */
 body {
   margin: 0;
