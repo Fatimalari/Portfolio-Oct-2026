@@ -57,6 +57,15 @@
   gap: 26px;
 }
 
+/* Desktop: keep the headline on two lines inside the 150px margins by
+   scaling it down slightly when the content area is narrower than the
+   64px line needs (~18.4em wide; 18.8 leaves room for a scrollbar) */
+@media (min-width: 1200px) {
+  .hero__title {
+    font-size: min(var(--h1-size), calc((100vw - 2 * var(--gutter)) / 18.8));
+  }
+}
+
 .hero__line {
   position: relative; /* holds the block-reveal cover on desktop */
   display: block;

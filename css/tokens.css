@@ -46,9 +46,9 @@
   }
 }
 
-/* Desktop: 120px side margins across the homepage */
+/* Desktop: 150px side margins across the homepage */
 @media (min-width: 1200px) {
-  :root { --gutter: 120px; }
+  :root { --gutter: 150px; }
 }
 
 /* Base type styles */
