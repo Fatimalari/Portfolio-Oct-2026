@@ -93,6 +93,47 @@
   list-style: none;
 }
 
+/* Hero hover card: 224×266, 40px left of the social icons, bottoms aligned */
+.hero-card {
+  --card-w: 224px;
+  --card-h: 266px;
+  position: absolute;
+  right: calc(var(--gutter) + 44px + 40px);
+  top: calc(40% + (2 * 44px + 18px) / 2 - var(--card-h));
+  width: var(--card-w);
+  height: var(--card-h);
+}
+
+.hero-card__img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-card__img--front {
+  z-index: 1;
+  background: #d9d9d9; /* placeholder until the image is added */
+}
+
+.hero-card__img--back {
+  background: #bdbdbd; /* placeholder: darker so it reads as a second image */
+  transform-origin: bottom right;
+}
+
+.hero-card__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .hero-card:hover .hero-card__img--back {
+    transform: translateX(-62%) rotate(-6deg);
+  }
+}
+
 .social__link {
   display: grid;
   place-items: center;
@@ -145,6 +186,8 @@
     padding: 96px var(--gutter) 40px;
   }
   .hero__content { flex: none; }
+
+  .hero-card { display: none; } /* desktop/tablet only for now */
 
   /* Mobile: 24px logos in 44px circles, in a row below the headline */
   .social {
@@ -531,9 +574,17 @@ main > .section:last-child { padding-bottom: 120px; }
 
 /* Hero entrance after the preloader lifts. The headline uses the block
    reveal (js/text-reveal.js); the social icons fade and rise. */
-.is-loading .social {
+.is-loading .social,
+.is-loading .hero-card {
   opacity: 0;
   transform: translateY(40px);
+}
+
+.is-loaded .hero-card {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.6s;
 }
 
 .is-loaded .social {
