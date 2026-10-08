@@ -322,7 +322,16 @@ main > .section:last-child { padding-bottom: 120px; }
 
 .about__media {
   aspect-ratio: 640 / 392;
-  background: #d9d9d9; /* placeholder until the photo is added */
+  overflow: hidden;
+  background: var(--color-secondary); /* shows while the photo loads */
+}
+
+.about__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%; /* portrait photo: keep the face and shirt in frame */
 }
 
 /* Experience */
