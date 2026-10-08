@@ -424,7 +424,7 @@ main > .section:last-child { padding-bottom: 120px; }
 /* The panel holds only the contact call-to-action; the footer bar sits
    below it on the page background */
 .site-footer__panel {
-  margin: 0 calc(var(--gutter) - 60px);
+  margin: 0 var(--gutter); /* box edges on the page margins, like every section */
   padding: 120px 60px;
   background: var(--color-secondary);
 }
@@ -477,8 +477,7 @@ main > .section:last-child { padding-bottom: 120px; }
 
 @media (max-width: 767px) {
   .site-footer__panel {
-    margin: 0;
-    padding: 80px var(--gutter);
+    padding: 80px 24px;
   }
   .contact__title { line-height: 1.3; }
   .contact .button { margin-top: 32px; }
