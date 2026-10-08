@@ -147,10 +147,12 @@
     };
   }
 
-  // Mobile hero: the headline wraps, so each wrapped line gets its own block.
+  // Block reveal for hero elements that SplitText splits (the mobile
+  // headline, the Hire me button), played with the hero intro.
   // SplitText re-splits when fonts finish loading or the width changes, and
   // each split builds a fresh timeline, so the state lives out here.
-  function animateHeroMobile() {
+  // extraDelay staggers an element after the headline.
+  function animateWithHero(elements, extraDelay) {
     var startDelay = null; // set once the hero may play
     var started = false;   // a timeline has begun playing
     var done = false;      // the intro has finished once
@@ -161,8 +163,8 @@
       tl.delay(started ? 0 : startDelay).play();
     }
 
-    document.querySelectorAll(".hero__line").forEach(function (line) {
-      animate(line, {
+    elements.forEach(function (el) {
+      animate(el, {
         duration: 0.8,
         stagger: 0.15,
         start: function (tl) {
@@ -178,11 +180,21 @@
     });
 
     return whenHeroReady(function (delay) {
-      startDelay = delay;
+      startDelay = delay + (extraDelay || 0);
       waiting.forEach(play);
       started = true;
       waiting = [];
     });
+  }
+
+  // Mobile hero: the headline wraps, so each wrapped line gets its own block
+  function animateHeroMobile() {
+    return animateWithHero(document.querySelectorAll(".hero__line"), 0);
+  }
+
+  // Hire me button: its text reveals just after the headline
+  function animateHeroCta() {
+    return animateWithHero(document.querySelectorAll(".hero .hero__cta"), 0.3);
   }
 
   var mm = gsap.matchMedia();
@@ -195,7 +207,9 @@
     var c = context.conditions;
     if (!c.desktop && !c.mobile) return;
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
-    return c.desktop ? animateHero() : animateHeroMobile();
+    var stopHero = c.desktop ? animateHero() : animateHeroMobile();
+    var stopCta = animateHeroCta();
+    return function () { stopHero(); stopCta(); };
   });
 
   // Header nav (About, Resume): the same two-colour block sweep plays over
