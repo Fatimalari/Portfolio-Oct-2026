@@ -355,21 +355,18 @@ main > .section:last-child { padding-bottom: 120px; }
   object-position: 50% 30%; /* portrait photo: keep the face and shirt in frame */
 }
 
-/* Desktop/tablet: a narrower, slightly taller frame (69% of the column,
-   about 7% taller than the old 640:392 box), aligned right, matching the
-   design note; the photo is cropped from the left */
+/* Desktop/tablet: the whole photo, uncropped. The frame takes the
+   photo's own 3:4 shape at 69% of the column width, aligned right. */
 @media (min-width: 768px) {
   .about__media { aspect-ratio: auto; }
 
   .about__media picture {
     width: 69%;
     height: auto;
-    aspect-ratio: 1.055;
+    aspect-ratio: 3 / 4;
   }
 
-  .about__media img {
-    width: calc(100% / 0.69); /* full column width, as before the crop */
-  }
+  .about__media img { object-position: center; }
 }
 
 /* Experience */
