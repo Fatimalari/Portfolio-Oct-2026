@@ -102,13 +102,12 @@
 
 /* Tools strip under the headline: logos and names scrolling left in a
    loop. The track holds four identical groups, so moving it a quarter of
-   its width lands exactly where it started. The edges fade out. */
+   its width lands exactly where it started. Like the Insights marquee,
+   it is clipped exactly at the page margins. */
 .tools {
   --tools-gap: 56px;
   margin-top: 56px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
 .tools__track {
@@ -148,7 +147,6 @@
 
 /* No auto-motion for people who turn animations off: one static row */
 @media (prefers-reduced-motion: reduce) {
-  .tools { -webkit-mask-image: none; mask-image: none; }
   .tools__track { width: auto; animation: none; }
   .tools__group { flex-wrap: wrap; row-gap: 20px; padding: 0; }
   .tools__group[aria-hidden="true"] { display: none; }
