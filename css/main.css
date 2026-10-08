@@ -313,7 +313,7 @@ main > .section:last-child { padding-bottom: 120px; }
 
 /* About: everything sits in a secondary-colour panel on the page margins */
 .about__panel {
-  padding: 40px;
+  padding: 60px;
   background: var(--color-secondary);
 }
 
