@@ -654,6 +654,7 @@ main > .section:last-child { padding-bottom: 120px; }
 }
 
 .button:active .button__label::after,
+.button.is-tapped .button__label::after,
 .button:focus-visible .button__label::after { transform: scaleX(1); }
 
 @media (hover: hover) {
@@ -663,9 +664,19 @@ main > .section:last-child { padding-bottom: 120px; }
 
 /* deep accent for the text: 6:1 on white, same purple as the nav hover */
 .button:active,
+.button.is-tapped,
 .button:focus-visible { color: var(--color-accent-strong); }
 .button:active .button__dot,
+.button.is-tapped .button__dot,
 .button:focus-visible .button__dot { transform: scale(1); }
+
+/* Touch screens: a tap plays a quicker version of the hover, and
+   js/buttons.js opens the link once it has finished (~0.3s) */
+@media (hover: none) {
+  .button { transition-duration: 0.2s; }
+  .button__dot { transition-duration: 0.25s; }
+  .button__label::after { transition-duration: 0.3s; }
+}
 
 @media (hover: hover) {
   .button:hover { color: var(--color-accent-strong); }
