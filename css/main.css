@@ -82,8 +82,6 @@
   flex: none;
   margin-left: auto;
   margin-bottom: 0.15em; /* sits on the headline's baseline, not its descender room */
-  padding: 22px 52px;
-  font-weight: var(--weight-medium);
 }
 
 /* Desktop: keep the headline on two lines inside the 150px margins by
@@ -301,7 +299,6 @@
   .hero .hero__cta {
     margin-left: 0;
     margin-bottom: 0;
-    padding: 16px 40px;
   }
 
   /* Mobile: 24px logos in 44px circles, in a row above the headline */
@@ -612,33 +609,54 @@ main > .section:last-child { padding-bottom: 120px; }
   }
 }
 
-/* Button */
+/* Button: a purple dot and bold text, no box. On hover (or tap / focus)
+   the dot grows and the text turns purple. The text keeps the block
+   reveal (js/text-reveal.js animates .button__label). */
 .button {
-  display: inline-block;
-  padding: 11px 11px;
-  border: 1px solid var(--color-text);
+  --dot: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: var(--color-text);
-  font-size: var(--text-primary-size);
-  line-height: 1.4;
+  font-size: 22px;
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s ease;
 }
+
+.button__dot {
+  flex: none;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: scale(0.6);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+
+.button__label { display: block; }
+
+/* deep accent for the text: 6:1 on white, same purple as the nav hover */
+.button:active,
+.button:focus-visible { color: var(--color-accent-strong); }
+.button:active .button__dot,
+.button:focus-visible .button__dot { transform: scale(1); }
 
 @media (hover: hover) {
-  .button:hover {
-    background: var(--color-text);
-    color: #fff;
-  }
-}
-
-.button:active {
-  background: var(--color-text);
-  color: #fff;
+  .button:hover { color: var(--color-accent-strong); }
+  .button:hover .button__dot { transform: scale(1); }
 }
 
 .button:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+  .button { --dot: 18px; gap: 10px; font-size: 19px; }
 }
 
 @media (max-width: 767px) {

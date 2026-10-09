@@ -53,9 +53,9 @@
   var SELECTORS = [
     ".section-title",
     ".work-card__category", ".work-card__title",
-    ".about__text p", ".about__text .button",
+    ".about__text p", ".about__text .button__label",
     ".experience-item__date", ".experience-item__title", ".experience-item__text",
-    ".contact__title", ".contact .button",
+    ".contact__title", ".contact .button__label",
     ".site-footer__name", ".site-footer__nav a"
   ].join(",");
 
@@ -194,7 +194,7 @@
 
   // Hire me button: its text reveals just after the headline
   function animateHeroCta() {
-    return animateWithHero(document.querySelectorAll(".hero .hero__cta"), 0.3);
+    return animateWithHero(document.querySelectorAll(".hero .hero__cta .button__label"), 0.3);
   }
 
   var mm = gsap.matchMedia();
