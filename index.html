@@ -6,8 +6,8 @@
   <title>Fatima Lari — UX/UI Designer</title>
   <meta name="description" content="Fatima Lari is a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=62">
-  <link rel="stylesheet" href="css/main.css?v=62">
+  <link rel="stylesheet" href="css/tokens.css?v=63">
+  <link rel="stylesheet" href="css/main.css?v=63">
   <script>
     /* Show the preloader once per visit, and never for reduced-motion users */
     (function () {
@@ -19,11 +19,12 @@
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/preloader.js?v=62" defer></script>
-  <script src="js/vendor/gsap.min.js?v=62" defer></script>
-  <script src="js/vendor/ScrollTrigger.min.js?v=62" defer></script>
-  <script src="js/vendor/SplitText.min.js?v=62" defer></script>
-  <script src="js/text-reveal.js?v=62" defer></script>
+  <script src="js/preloader.js?v=63" defer></script>
+  <script src="js/vendor/gsap.min.js?v=63" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js?v=63" defer></script>
+  <script src="js/vendor/SplitText.min.js?v=63" defer></script>
+  <script src="js/text-reveal.js?v=63" defer></script>
+  <script src="js/social.js?v=63" defer></script>
 </head>
 <body>
   <div class="preloader" aria-hidden="true">
@@ -90,8 +91,9 @@
         </div>
       </div>
 
-      <!-- TODO: replace # with your LinkedIn and Instagram profile URLs, add your email after mailto:,
-           and put the short link / handle / email in each .social__bubble -->
+      <!-- TODO: replace # with your LinkedIn and Instagram profile URLs; put your email after
+           mailto: and in data-email (clicking the icon copies it on desktop); and put the
+           short link / handle / email in each .social__bubble -->
       <ul class="social" aria-label="Social media">
         <li>
           <a class="social__link" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -115,7 +117,7 @@
           <span class="social__bubble" aria-hidden="true">Follow on Instagram</span>
         </li>
         <li>
-          <a class="social__link" href="mailto:" aria-label="Email">
+          <a class="social__link" href="mailto:" data-email="" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="3"/>
               <path d="m3.5 7.5 7.4 5.2a2 2 0 0 0 2.2 0l7.4-5.2"/>
