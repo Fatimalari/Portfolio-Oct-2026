@@ -84,6 +84,30 @@
   margin-bottom: 0.15em; /* sits on the headline's baseline, not its descender room */
 }
 
+/* Hire me: on top of the usual button hover, a purple line slides in
+   under the text from left to right (and shrinks back on leaving) */
+.hero__cta .button__label { position: relative; }
+
+.hero__cta .button__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--color-accent-strong);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero__cta:active .button__label::after,
+.hero__cta:focus-visible .button__label::after { transform: scaleX(1); }
+
+@media (hover: hover) {
+  .hero__cta:hover .button__label::after { transform: scaleX(1); }
+}
+
 /* Desktop: keep the headline on two lines inside the 150px margins by
    scaling it down slightly when the content area is narrower than the
    64px line needs (~18.4em wide; 18.8 leaves room for a scrollbar) */
