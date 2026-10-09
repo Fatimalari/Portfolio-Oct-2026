@@ -218,6 +218,56 @@
   outline-offset: 3px;
 }
 
+/* Speech bubble with the handle / address, opening to the left of the
+   circle on hover or keyboard focus (desktop only; on touch screens a
+   tap simply opens the link) */
+.social li { position: relative; }
+
+.social__bubble { display: none; }
+
+@media (hover: hover) and (min-width: 768px) {
+  .social__bubble {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 14px);
+    display: block;
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: var(--color-text);
+    color: #fff;
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(8px, -50%) scale(0.96);
+    transform-origin: right center;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* the bubble's tail, pointing at the circle */
+  .social__bubble::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -6px;
+    border: 6px solid transparent;
+    border-left-color: var(--color-text);
+  }
+
+  .social__link:hover + .social__bubble,
+  .social__link:focus-visible + .social__bubble {
+    opacity: 1;
+    transform: translate(0, -50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social__bubble { transition: opacity 0.2s ease; }
+}
+
 @media (max-width: 767px) {
   .site-header { padding: 24px var(--gutter); }
   .site-header__logo { font-size: 20px; }
