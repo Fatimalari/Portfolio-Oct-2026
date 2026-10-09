@@ -171,7 +171,7 @@
   --tile-gap: 18px;
   position: absolute;
   right: var(--gutter);
-  top: calc(40% - (2 * var(--tile) + var(--tile-gap)) / 2);
+  top: calc(40% - (3 * var(--tile) + 2 * var(--tile-gap)) / 2); /* 3 circles */
   display: flex;
   flex-direction: column;
   gap: var(--tile-gap);
