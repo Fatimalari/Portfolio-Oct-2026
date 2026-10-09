@@ -46,9 +46,14 @@
   }
 }
 
-/* Desktop: 200px side margins across the homepage */
+/* Desktop: 200px side margins across the homepage. The content stops
+   growing at 1360px wide (from a 1760px screen up), so on big monitors it
+   stays centred and the margins widen instead. */
 @media (min-width: 1200px) {
-  :root { --gutter: 200px; }
+  :root {
+    --content-max: 1360px;
+    --gutter: max(200px, (100vw - var(--content-max)) / 2);
+  }
 }
 
 /* Base type styles */
