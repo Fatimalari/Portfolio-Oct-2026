@@ -530,6 +530,42 @@ main > .section:last-child { padding-bottom: 120px; }
   .about-page__text .button { margin-top: 4px; }
 }
 
+/* About page: Beyond the screen — a short line, then three photos */
+.beyond__text {
+  max-width: 40em;
+  margin: 0 0 48px;
+  font-size: var(--text-primary-size);
+  line-height: 1.6;
+}
+
+.beyond__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.beyond__photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-secondary); /* placeholder until the photos are added */
+}
+
+.beyond__photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .beyond__text { margin-bottom: 32px; }
+  .beyond__gallery { grid-template-columns: 1fr; gap: 20px; }
+}
+
 /* Experience */
 .experience__list {
   display: flex;
