@@ -19,6 +19,33 @@
   text-decoration: none;
 }
 
+/* Location (and local time, js/clock.js) centred in the header */
+.site-header__loc {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--text-primary-size);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+.site-header__loc::before,
+.hero__loc::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.hero__loc { display: none; }
+
 .site-header__nav {
   display: flex;
   gap: 24px;
@@ -276,6 +303,18 @@
 
 @media (max-width: 767px) {
   .site-header { padding: 24px var(--gutter); }
+  /* no room in the phone header: the location moves under the hero icons */
+  .site-header__loc { display: none; }
+  .hero__loc {
+    order: -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: var(--text-secondary-size);
+    line-height: 1.4;
+    color: var(--color-text-muted);
+  }
   .site-header__logo { font-size: 20px; }
   .site-header__nav { gap: 16px; }
   .site-header__nav a { font-size: var(--text-secondary-size); }
