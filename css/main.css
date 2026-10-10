@@ -469,7 +469,7 @@ main > .section:last-child { padding-bottom: 120px; }
 /* About me page (about.html): a big display heading in the hero-title
    style, then the text on the left and the photo on the right */
 .about-page {
-  padding: 200px var(--gutter) 120px; /* top clears the header */
+  padding: 200px var(--gutter) 0; /* top clears the header */
 }
 
 .about-page__title {
@@ -523,7 +523,7 @@ main > .section:last-child { padding-bottom: 120px; }
 }
 
 @media (max-width: 767px) {
-  .about-page { padding: 120px var(--gutter) 80px; }
+  .about-page { padding: 120px var(--gutter) 0; }
   .about-page__title { margin-bottom: 32px; }
   .about-page__grid { grid-template-columns: 1fr; gap: 40px; }
   .about-page__text p { margin-bottom: 20px; }
