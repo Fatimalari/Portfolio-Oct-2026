@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume — Fatima Lari, UX/UI Designer</title>
+  <meta name="description" content="Resume of Fatima Lari, a UX/UI designer based in Debrecen, Hungary.">
+  <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css?v=84">
+  <link rel="stylesheet" href="css/main.css?v=84">
+  <script>
+    /* Lets iOS Safari show :active (tap) states */
+    document.addEventListener("touchstart", function () {}, { passive: true });
+  </script>
+  <script src="js/vendor/gsap.min.js?v=84" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js?v=84" defer></script>
+  <script src="js/vendor/SplitText.min.js?v=84" defer></script>
+  <script src="js/text-reveal.js?v=84" defer></script>
+  <script src="js/buttons.js?v=84" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" href="./">Fatima Lari</a>
+    <nav class="site-header__nav" aria-label="Main">
+      <a href="about.html">About</a>
+      <a href="resume.html" aria-current="page">Resume</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="resume-page" aria-labelledby="resume-title">
+      <h1 class="resume-page__title" id="resume-title">Resume</h1>
+
+      <div class="resume-head">
+        <div class="resume-head__info">
+          <p class="resume-head__name">Fatima Lari</p>
+          <p class="resume-head__role">UX/UI Designer · Debrecen, Hungary</p>
+        </div>
+        <div class="resume-head__actions">
+          <!-- TODO: add resume.pdf to the site root -->
+          <a class="button" href="resume.pdf" download><span class="button__dot" aria-hidden="true"></span><span class="button__label">Download PDF</span></a>
+          <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">fatima.lari07@gmail.com</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resume-section" aria-labelledby="resume-experience">
+      <h2 class="section-title" id="resume-experience">Experience</h2>
+      <ol class="resume-list">
+          <li class="resume-row">
+            <p class="resume-row__date">Oct 2026 – Present</p>
+            <div>
+              <h3 class="resume-row__title">Product &amp; Brand Designer</h3>
+              <p class="resume-row__text">Define product direction, conduct user research, and translate insights into clear product requirements and user focused solutions. Collaborate with designers and developers from discovery through release, while maintaining brand consistency and using product performance insights to drive continuous improvements.</p>
+            </div>
+          </li>
+          <li class="resume-row">
+            <p class="resume-row__date">Jun 2025 – Sept 2026</p>
+            <div>
+              <h3 class="resume-row__title">UX/UI Designer, Araft</h3>
+              <p class="resume-row__text">Responsible for user research, wireframing, prototyping and final UI design, while collaborating closely with designers and team members to create user-friendly digital experiences built around real user needs and strong UX principles.</p>
+            </div>
+          </li>
+          <li class="resume-row">
+            <p class="resume-row__date">Feb 2024 – Apr 2025</p>
+            <div>
+              <h3 class="resume-row__title">UX/UI Designer, Freelance</h3>
+              <p class="resume-row__text">Started working as a freelance UX/UI designer, focusing on user research, competitor analysis, UX audits, wireframing, prototyping, and final UI design for digital products and websites.</p>
+            </div>
+          </li>
+          <li class="resume-row">
+            <p class="resume-row__date">Clinical foundation</p>
+            <div>
+              <h3 class="resume-row__title">Dentist</h3>
+              <p class="resume-row__text">Diagnosed and treated patients under pressure, reading people, understanding what was really wrong, and getting the details right to leave them pain free and reassured. Where my human-centered approach to design started, published research included.</p>
+            </div>
+          </li>
+      </ol>
+    </section>
+
+    <section class="section resume-section" aria-labelledby="resume-skills">
+      <h2 class="section-title" id="resume-skills">Skills &amp; tools</h2>
+      <div class="resume-skills">
+        <div>
+          <h3 class="resume-skills__label">Skills</h3>
+          <ul class="resume-tags">
+            <li>User research</li>
+            <li>Competitor analysis</li>
+            <li>UX audits</li>
+            <li>Wireframing</li>
+            <li>Prototyping</li>
+            <li>UI design</li>
+            <li>Product requirements</li>
+            <li>Brand consistency</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="resume-skills__label">Tools</h3>
+          <ul class="resume-tags">
+            <li>Figma</li>
+            <li>Claude Code</li>
+            <li>WordPress</li>
+            <li>Slack</li>
+            <li>Google Meet</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resume-section" aria-labelledby="resume-education">
+      <h2 class="section-title" id="resume-education">Education</h2>
+      <ol class="resume-list">
+        <!-- TODO: add the graduation year in the date column -->
+          <li class="resume-row">
+            <p class="resume-row__date"></p>
+            <div>
+              <h3 class="resume-row__title">Bachelor of Dental Surgery (BDS)</h3>
+              <p class="resume-row__text">Dow University of Health Sciences</p>
+            </div>
+          </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__panel">
+      <div class="contact">
+        <h2 class="contact__title">Let’s talk about <span class="nowrap">your project!</span></h2>
+        <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">fatima.lari07@gmail.com</span></a>
+      </div>
+    </div>
+
+    <div class="site-footer__bar">
+      <p class="site-footer__name">Fatima Lari – UX/UI designer</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -56,6 +56,8 @@
     ".about__text p", ".about__text .button__label",
     ".about-page__title", ".about-page__text p", ".about-page__text .button__label",
     ".beyond__text",
+    ".resume-page__title", ".resume-head__name", ".resume-head__role", ".resume-head__actions .button__label",
+    ".resume-row__date", ".resume-row__title", ".resume-row__text", ".resume-skills__label",
     ".experience-item__date", ".experience-item__title", ".experience-item__text",
     ".contact__title", ".contact .button__label",
     ".site-footer__name", ".site-footer__nav a"
