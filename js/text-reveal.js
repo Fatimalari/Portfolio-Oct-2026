@@ -59,7 +59,8 @@
     ".resume-page__title", ".resume-head__name", ".resume-head__role", ".resume-head__actions .button__label",
     ".resume-summary", ".resume-row__date", ".resume-row__place", ".resume-row__title", ".resume-row__text",
     ".resume-row__points li", ".resume-skills__label",
-    ".experience-item__date", ".experience-item__title", ".experience-item__text",
+    ".experience-row__role", ".experience-row__company", ".experience-row__desc", ".experience-row__date",
+    ".experience__more .button__label",
     ".contact__title", ".contact .button__label",
     ".site-footer__name", ".site-footer__nav a"
   ].join(",");
