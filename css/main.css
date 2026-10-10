@@ -430,14 +430,15 @@ main > .section:last-child { padding-bottom: 120px; }
 .about__grid {
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 64px;
 }
 
-.about__text { flex: 1; }
+/* Text takes half the panel's content width, like the About me page */
+.about__text { flex: 0 0 50%; }
 
 .about__text p {
   margin: 0 0 27px;
-  max-width: 580px;
   line-height: 1.5;
 }
 
@@ -586,6 +587,7 @@ main > .section:last-child { padding-bottom: 120px; }
 .experience-item__title { margin-top: 14px; }
 
 .experience-item__text {
+  max-width: 50%; /* same text width as the About sections */
   margin: 13px 0 0;
   line-height: 1.5;
 }
@@ -816,7 +818,9 @@ main > .section:last-child { padding-bottom: 120px; }
   }
   .about__panel { padding: 24px 20px; }
   .about__panel .section-title { margin-bottom: 24px; }
+  .about__text { flex: none; }
   .about__media { flex: none; width: 100%; }
+  .experience-item__text { max-width: none; }
   .about__text p { margin-bottom: 20px; }
   .about__text .button { margin-top: 4px; }
 }
