@@ -329,32 +329,59 @@ main > .section:last-child { padding-bottom: 120px; }
   border-bottom: 1px solid var(--color-text);
 }
 
-/* Work */
-.work__grid {
-  display: flex;
-  gap: 64px;
+/* Work: one project per row, text (40%) beside a large cover (60%),
+   thin lines between rows. The whole row is the link. */
+.work__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.work__col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
+.work__item + .work__item {
+  margin-top: 56px;
+  padding-top: 56px;
+  border-top: 1px solid var(--color-border);
 }
 
 .work-card {
-  display: block;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 64px;
   color: var(--color-text);
   text-decoration: none;
 }
 
-.work-card__media {
-  overflow: hidden;
-  background: #d9d9d9; /* placeholder until project covers are added */
+.work-card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* All project covers share the Passion Projects shape */
-.work-card__media--wide { aspect-ratio: 640 / 445; }
+.work-card__category {
+  margin: 0;
+  font-size: var(--text-secondary-size);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.work-card__title { margin-top: 10px; }
+
+.work-card__desc {
+  max-width: 36ch;
+  margin: 16px 0 0;
+  font-size: var(--text-primary-size);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* "View case study" sits at the bottom of the text column */
+.work-card__cta { margin-top: auto; padding-top: 32px; }
+
+.work-card__media {
+  overflow: hidden;
+  aspect-ratio: 640 / 445; /* all covers share the Passion Projects shape */
+  background: var(--color-secondary);
+}
 
 .work-card__media picture { display: block; height: 100%; }
 
@@ -366,23 +393,30 @@ main > .section:last-child { padding-bottom: 120px; }
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.work-card__category {
-  margin: 24px 0 0;
-  font-size: var(--text-primary-size);
-  line-height: 1.5;
-}
-
-.work-card__title {
-  margin-top: 14px;
-}
-
+/* Hovering anywhere on the row zooms the cover and plays the
+   "View case study" button animation */
 @media (hover: hover) {
   .work-card:hover .work-card__media img { transform: scale(1.03); }
+  .work-card:hover .work-card__cta { color: var(--color-accent-strong); }
+  .work-card:hover .work-card__cta .button__dot { transform: scale(1); }
+  .work-card:hover .work-card__cta .button__label::after { transform: scaleX(1); }
 }
+
+.work-card.is-tapped .work-card__cta,
+.work-card:focus-visible .work-card__cta { color: var(--color-accent-strong); }
+.work-card.is-tapped .work-card__cta .button__dot,
+.work-card:focus-visible .work-card__cta .button__dot { transform: scale(1); }
+.work-card.is-tapped .work-card__cta .button__label::after,
+.work-card:focus-visible .work-card__cta .button__label::after { transform: scaleX(1); }
 
 .work-card:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 6px;
+  outline-offset: 8px;
+}
+
+/* Tablet: a little less room between text and cover */
+@media (max-width: 1199px) {
+  .work-card { gap: 40px; }
 }
 
 @media (max-width: 767px) {
@@ -393,15 +427,13 @@ main > .section:last-child { padding-bottom: 120px; }
     padding-bottom: 20px;
   }
 
-  .work__grid {
-    flex-direction: column;
-    gap: 40px;
-  }
-  /* Flatten the columns so cards read 1, 2, 3, 4 */
-  .work__col { display: contents; }
-  .work-card { order: var(--order); }
-  .work-card__category { margin-top: 16px; }
+  /* Mobile: cover on top, text below */
+  .work__item + .work__item { margin-top: 40px; padding-top: 40px; }
+  .work-card { grid-template-columns: 1fr; gap: 20px; }
+  .work-card__media { order: -1; }
   .work-card__title { margin-top: 4px; }
+  .work-card__desc { margin-top: 10px; }
+  .work-card__cta { margin-top: 0; padding-top: 20px; }
 }
 
 /* About: everything sits in a secondary-colour panel on the page margins */

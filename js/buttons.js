@@ -1,5 +1,5 @@
 /* Touch screens have no hover, so a tap on a button (Hire me, Know me
-   better, the email) plays the hover animation — the dot grows, the text
+   better, the email) or a project row plays the hover animation — the dot grows, the text
    turns purple, the underline slides in — and the link opens once it has
    finished, about 0.3s later. Mouse and keyboard clicks open straight
    away, and so does everything for people who prefer reduced motion. */
@@ -8,7 +8,9 @@
   var RESET = 1200;  // clear the state if the page is still here (e.g. mailto)
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  document.querySelectorAll(".button").forEach(function (button) {
+  // links only: the "View case study" label inside a project row is a
+  // span, and the whole row (.work-card) is the link
+  document.querySelectorAll("a.button, a.work-card").forEach(function (button) {
     var touch = false;
     var timer;
 

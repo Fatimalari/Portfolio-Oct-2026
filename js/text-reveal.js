@@ -52,7 +52,7 @@
 
   var SELECTORS = [
     ".section-title",
-    ".work-card__category", ".work-card__title",
+    ".work-card__category", ".work-card__title", ".work-card__desc", ".work-card__cta .button__label",
     ".about__text p", ".about__text .button__label",
     ".experience-item__date", ".experience-item__title", ".experience-item__text",
     ".contact__title", ".contact .button__label",
