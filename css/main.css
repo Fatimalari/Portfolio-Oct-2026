@@ -643,7 +643,6 @@ main > .section:last-child { padding-bottom: 120px; }
 .resume-row__points li::marker { color: var(--color-accent); }
 
 .resume-summary {
-  max-width: 50%;
   margin: 48px 0 0;
   line-height: 1.6;
 }
@@ -701,7 +700,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   .resume-skills { grid-template-columns: 1fr; gap: 8px; }
   .resume-row + .resume-row { margin-top: 32px; padding-top: 32px; }
   .resume-row__title { font-size: 22px; }
-  .resume-summary { max-width: none; margin-top: 32px; }
+  .resume-summary { margin-top: 32px; }
   .resume-skills { row-gap: 8px; }
   .resume-tags { margin: 0 0 24px; }
   main > .resume-section:last-child { padding-bottom: 80px; }
