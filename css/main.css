@@ -587,7 +587,6 @@ main > .section:last-child { padding-bottom: 120px; }
 .experience-item__title { margin-top: 14px; }
 
 .experience-item__text {
-  max-width: 50%; /* same text width as the About sections */
   margin: 13px 0 0;
   line-height: 1.5;
 }
@@ -820,7 +819,6 @@ main > .section:last-child { padding-bottom: 120px; }
   .about__panel .section-title { margin-bottom: 24px; }
   .about__text { flex: none; }
   .about__media { flex: none; width: 100%; }
-  .experience-item__text { max-width: none; }
   .about__text p { margin-bottom: 20px; }
   .about__text .button { margin-top: 4px; }
 }
