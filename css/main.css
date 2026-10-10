@@ -419,41 +419,42 @@ main > .section:last-child { padding-bottom: 120px; }
   .work-card__cta { margin-top: 0; padding-top: 20px; }
 }
 
-/* About: everything sits in a secondary-colour panel on the page margins */
-.about__panel {
-  padding: 60px;
-  background: var(--color-secondary);
+/* About: a big display heading (same style as the hero title), then
+   the text on the left and the photo on the right */
+.about__title {
+  margin: 0 0 64px;
+  font-size: min(128px, calc((100vw - 2 * var(--gutter)) / 7.4));
+  font-weight: var(--weight-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.about__panel .section-title { margin-bottom: 40px; }
+/* room for descenders inside the block-reveal's clipped line */
+.about__title .block-line-wrap {
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
 
 .about__grid {
-  display: flex;
-  align-items: flex-start;
-  gap: 64px;
+  display: grid;
+  grid-template-columns: 40% 45%;
+  justify-content: space-between;
+  align-items: start;
 }
-
-.about__text { flex: 1; }
 
 .about__text p {
-  margin: 0 0 27px;
-  max-width: 580px;
-  line-height: 1.5;
+  margin: 0 0 24px;
+  line-height: 1.6;
 }
 
-.about__text .button { margin-top: 13px; }
-
-/* Photo: 424:392 frame, right column (about 40% of the panel's content) */
-.about__media {
-  flex: 0 0 40%;
-}
+.about__text .button { margin-top: 16px; }
 
 .about__media picture {
   position: relative;
   display: block;
-  aspect-ratio: 424 / 392;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--color-border); /* shows while the photo loads */
+  background: var(--color-secondary); /* shows while the photo loads */
 }
 
 .about__media img {
@@ -708,14 +709,15 @@ main > .section:last-child { padding-bottom: 120px; }
   .button { --dot: 18px; gap: 10px; font-size: 19px; }
 }
 
+/* Tablet: text and photo side by side, a little tighter */
+@media (max-width: 1199px) {
+  .about__grid { grid-template-columns: 46% 46%; }
+}
+
+/* Mobile: heading, text, button, then the photo */
 @media (max-width: 767px) {
-  .about__grid {
-    flex-direction: column;
-    gap: 40px;
-  }
-  .about__panel { padding: 24px 20px; }
-  .about__panel .section-title { margin-bottom: 24px; }
-  .about__media { flex: none; width: 100%; }
+  .about__title { margin-bottom: 32px; }
+  .about__grid { grid-template-columns: 1fr; gap: 40px; }
   .about__text p { margin-bottom: 20px; }
   .about__text .button { margin-top: 4px; }
 }

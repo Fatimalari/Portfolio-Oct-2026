@@ -15,7 +15,7 @@
   // Inside the secondary-colour panels the first block would be invisible,
   // so there it uses white (the primary colour) instead
   var PANEL_FIRST_COLOR = rootStyle.getPropertyValue("--color-primary").trim() || "#ffffff";
-  var PANELS = ".about__panel, .site-footer__panel";
+  var PANELS = ".site-footer__panel";
 
   // Adds both blocks to a positioned element and returns them [first, second]
   function addCovers(parent) {
@@ -51,7 +51,7 @@
   var STAGGER = 0.1;
 
   var SELECTORS = [
-    ".section-title",
+    ".section-title", ".about__title",
     ".work-card__category", ".work-card__title", ".work-card__desc", ".work-card__cta .button__label",
     ".about__text p", ".about__text .button__label",
     ".experience-item__date", ".experience-item__title", ".experience-item__text",
