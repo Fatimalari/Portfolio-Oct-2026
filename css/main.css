@@ -132,17 +132,13 @@
   color: var(--color-text);
 }
 
-.tools__item svg,
+/* the brands' full-colour logos */
 .tools__logo {
   flex: none;
   width: 28px;
   height: 28px;
+  object-fit: contain;
 }
-
-/* Desktop: the brands' full-colour logos; phones keep the one-colour
-   versions */
-.tools__logo { object-fit: contain; }
-.tools__mono { display: none; }
 
 @keyframes tools-scroll {
   to { transform: translateX(-25%); }
@@ -158,9 +154,7 @@
 @media (max-width: 767px) {
   .tools { --tools-gap: 36px; margin-top: 32px; }
   .tools__item { gap: 10px; font-size: 18px; }
-  .tools__item svg { width: 22px; height: 22px; }
-  .tools__mono { display: block; }
-  .tools__logo { display: none; }
+  .tools__logo { width: 22px; height: 22px; }
 }
 
 /* Social links: outline logos in 44px secondary-colour circles stacked on the right, centred at 40% of the hero */
@@ -761,8 +755,6 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   text-align: right;
 }
 
-.experience__more { margin-top: 40px; }
-
 @media (max-width: 767px) {
   .experience-row {
     grid-template-columns: 1fr auto;
@@ -772,7 +764,6 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   .experience-row__role { font-size: 22px; }
   .experience-row__desc { display: none; } /* phones: role, company and years only */
   .experience-row__date { grid-column: 2; grid-row: 1; align-self: start; padding-top: 4px; }
-  .experience__more { margin-top: 32px; }
 }
 
 /* Insight into my work: auto-scrolling marquee */
