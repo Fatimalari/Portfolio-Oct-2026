@@ -621,8 +621,31 @@ main > .section:last-child { padding-bottom: 120px; }
 
 .resume-row__date {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.5;
+}
+
+.resume-row__place {
+  margin: 4px 0 0;
+  font-size: var(--text-secondary-size);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.resume-row__points {
+  max-width: 44em;
+  margin: 12px 0 0;
+  padding-left: 1.2em;
+  line-height: 1.6;
+}
+
+.resume-row__points li + li { margin-top: 8px; }
+.resume-row__points li::marker { color: var(--color-accent); }
+
+.resume-summary {
+  max-width: 50%;
+  margin: 48px 0 0;
+  line-height: 1.6;
 }
 
 .resume-row__title {
@@ -678,6 +701,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   .resume-skills { grid-template-columns: 1fr; gap: 8px; }
   .resume-row + .resume-row { margin-top: 32px; padding-top: 32px; }
   .resume-row__title { font-size: 22px; }
+  .resume-summary { max-width: none; margin-top: 32px; }
   .resume-skills { row-gap: 8px; }
   .resume-tags { margin: 0 0 24px; }
   main > .resume-section:last-child { padding-bottom: 80px; }
