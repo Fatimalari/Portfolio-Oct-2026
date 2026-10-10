@@ -61,49 +61,48 @@
 
 .hero__content { flex: 1; min-width: 0; } /* lets the tools strip clip instead of widening the page */
 
-.hero__title {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-/* Headline with the "Hire me" button at the right margin, its bottom
-   level with the last line. Where the screen is too narrow for both,
-   the button drops below the headline and stays on the right. */
+/* Big display title, then a subtitle in the section-heading style
+   (H2), with "Hire me" level with the subtitle's last line */
 .hero__head {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 32px 40px;
+  gap: 32px;
+}
+
+.hero__title {
+  flex: 0 0 100%; /* own row; subtitle and Hire me share the next */
+  margin: 0;
+  /* up to 128px, scaled down so it stays on one line and clear of the
+     social icons on the right (desktop) */
+  font-size: min(128px, calc((100vw - 2 * var(--gutter) - var(--title-clear, 120px)) / 7.4));
+  font-weight: var(--weight-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__subtitle {
+  max-width: 17.5em; /* wraps after "strategic", as in the design */
+  margin: 0;
+  font-size: var(--h2-size);
+  font-weight: var(--weight-medium);
+  line-height: 1.15;
+}
+
+.hero__line { display: block; }
+
+/* room for descenders (g, y) inside the block-reveal's clipped lines */
+.hero .block-line-wrap {
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .hero .hero__cta {
   flex: none;
   margin-left: auto;
-  margin-bottom: 0.15em; /* sits on the headline's baseline, not its descender room */
+  margin-bottom: 0.4em; /* level with the subtitle's last baseline */
 }
-
-/* Desktop: keep the headline on two lines inside the 150px margins by
-   scaling it down slightly when the content area is narrower than the
-   64px line needs (~18.4em wide; 18.8 leaves room for a scrollbar) */
-@media (min-width: 1200px) {
-  .hero__title {
-    font-size: min(var(--h1-size), calc((100vw - 2 * var(--gutter)) / 18.8));
-  }
-}
-
-.hero__line {
-  position: relative; /* holds the block-reveal cover on desktop */
-  display: block;
-  width: fit-content;
-  overflow: hidden;
-  /* room for descenders (g, y) inside the clipped box, without moving the lines */
-  padding-bottom: 0.15em;
-  margin-bottom: -0.15em;
-}
-
-.hero__line-inner { display: block; }
 
 /* Tools strip under the headline: logos and names scrolling left in a
    loop. The track holds four identical groups, so moving it a quarter of
@@ -296,6 +295,7 @@
   .hero__content { flex: none; }
   /* Hire me sits under the headline on the left, above the tools strip */
   .hero__head { gap: 24px; }
+  .hero__title { --title-clear: 0px; } /* icons sit above the title here */
   .hero .hero__cta {
     margin-left: 0;
     margin-bottom: 0;
@@ -311,9 +311,6 @@
     flex-direction: row;
     justify-content: flex-start;
   }
-  .hero__title { display: block; line-height: 1.25; }
-  .hero__line { display: block; width: auto; overflow: visible; }
-  .hero__line-inner { display: inline; }
 }
 
 /* Sections (shared) */

@@ -132,33 +132,9 @@
     return function () {};
   }
 
-  // Hero headline: one block per line (the lines don't wrap on desktop),
-  // played once the preloader starts lifting, or right away without it.
-  function animateHero() {
-    var lines = document.querySelectorAll(".hero__line");
-    var inners = gsap.utils.toArray(".hero__line-inner");
-    var firsts = [];
-    var seconds = [];
-
-    lines.forEach(function (line) {
-      var covers = addCovers(line);
-      firsts.push(covers[0]);
-      seconds.push(covers[1]);
-    });
-
-    var tl = blockTimeline(gsap.timeline({ paused: true, defaults: { ease: "expo.inOut" } }),
-      firsts, seconds, inners, 0.8, 0.15);
-
-    var stopWaiting = whenHeroReady(function (delay) { tl.delay(delay).play(); });
-
-    return function cleanup() {
-      stopWaiting();
-      firsts.concat(seconds).forEach(function (c) { c.remove(); });
-    };
-  }
-
-  // Block reveal for hero elements that SplitText splits (the mobile
-  // headline, the Hire me button), played with the hero intro.
+  // Block reveal for the hero (title, subtitle, Hire me), played with the
+  // intro: SplitText splits each into lines so every wrapped line gets
+  // its own block.
   // SplitText re-splits when fonts finish loading or the width changes, and
   // each split builds a fresh timeline, so the state lives out here.
   // extraDelay staggers an element after the headline.
@@ -197,8 +173,8 @@
     });
   }
 
-  // Mobile hero: the headline wraps, so each wrapped line gets its own block
-  function animateHeroMobile() {
+  // Hero title and subtitle
+  function animateHeroText() {
     return animateWithHero(document.querySelectorAll(".hero__line"), 0);
   }
 
@@ -217,7 +193,7 @@
     var c = context.conditions;
     if (!c.desktop && !c.mobile) return;
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
-    var stopHero = c.desktop ? animateHero() : animateHeroMobile();
+    var stopHero = animateHeroText();
     var stopCta = animateHeroCta();
     return function () { stopHero(); stopCta(); };
   });
