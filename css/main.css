@@ -556,7 +556,7 @@ main > .section:last-child { padding-bottom: 120px; }
   margin: 0;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--color-secondary); /* placeholder until the photos are added */
+  background: var(--color-secondary); /* shows while the photo loads */
 }
 
 .beyond__photo img {
