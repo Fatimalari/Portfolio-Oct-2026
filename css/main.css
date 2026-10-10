@@ -762,7 +762,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
     padding: 24px 0;
   }
   .experience-row__role { font-size: 22px; }
-  .experience-row__desc { grid-column: 1 / -1; grid-row: 2; max-width: none; }
+  .experience-row__desc { display: none; } /* phones: role, company and years only */
   .experience-row__date { grid-column: 2; grid-row: 1; align-self: start; padding-top: 4px; }
   .experience__more { margin-top: 32px; }
 }
