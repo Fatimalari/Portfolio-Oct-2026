@@ -6,18 +6,19 @@
   <title>About me — Fatima Lari, UX/UI Designer</title>
   <meta name="description" content="About Fatima Lari, a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=95">
-  <link rel="stylesheet" href="css/main.css?v=95">
+  <link rel="stylesheet" href="css/tokens.css?v=97">
+  <link rel="stylesheet" href="css/main.css?v=97">
   <script>
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/vendor/gsap.min.js?v=95" defer></script>
-  <script src="js/vendor/ScrollTrigger.min.js?v=95" defer></script>
-  <script src="js/vendor/SplitText.min.js?v=95" defer></script>
-  <script src="js/text-reveal.js?v=95" defer></script>
-  <script src="js/buttons.js?v=95" defer></script>
-  <script src="js/clock.js?v=95" defer></script>
+  <script src="js/vendor/gsap.min.js?v=97" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js?v=97" defer></script>
+  <script src="js/vendor/SplitText.min.js?v=97" defer></script>
+  <script src="js/text-reveal.js?v=97" defer></script>
+  <script src="js/buttons.js?v=97" defer></script>
+  <script src="js/clock.js?v=97" defer></script>
+  <script src="js/menu.js?v=97" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -27,7 +28,27 @@
       <a href="about.html" aria-current="page">About</a>
       <a href="resume.html">Resume</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open menu">
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
   </header>
+
+  <!-- Phone menu: a drawer that slides in from the right (js/menu.js) -->
+  <div class="drawer" id="menu-drawer" hidden>
+    <div class="drawer__backdrop" data-close-menu></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <button class="drawer__close" type="button" aria-label="Close menu" data-close-menu>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <nav aria-label="Mobile">
+        <ul class="drawer__links">
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
   <main>
     <section class="about-page" aria-labelledby="about-page-title">
@@ -81,7 +102,7 @@
     <div class="site-footer__panel">
       <div class="contact">
         <h2 class="contact__title">Let’s talk about <span class="nowrap">your project!</span></h2>
-        <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">fatima.lari07@gmail.com</span></a>
+        <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Let’s talk</span></a>
       </div>
     </div>
 
