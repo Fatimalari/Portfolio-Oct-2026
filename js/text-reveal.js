@@ -2,8 +2,8 @@
    React component). Each line of text is covered by two sweeping blocks:
    a secondary-colour block grows left → right with the accent block close
    behind, the text appears, then the accent and secondary blocks shrink
-   away to the right in turn. Plays when the text scrolls into
-   view and reverses when you scroll back above it.
+   away to the right in turn. Plays once, the first time the text
+   scrolls into view after the page loads.
    Runs on desktop and mobile; skipped for people who prefer reduced motion. */
 (function () {
   gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -86,18 +86,28 @@
           seconds.push(covers[1]);
         });
 
+        // Scroll reveals play once per page load: after a reveal has
+        // finished, a re-split (fonts loading, resizing) jumps straight to
+        // the revealed state instead of playing it again
+        var revealed = !opts.start && el.hasAttribute("data-revealed");
+
         var tl = blockTimeline(gsap.timeline({
-          paused: !!opts.start,
+          paused: !!opts.start || revealed,
           defaults: { ease: "expo.inOut" },
-          scrollTrigger: opts.start ? null : {
+          scrollTrigger: opts.start || revealed ? null : {
             trigger: el,
             // The footer bar sits at the very bottom of the page and can't
             // scroll up to 85%, so it plays as soon as it enters the screen
             start: el.closest(".site-footer__bar") ? "top bottom" : "top 85%",
-            toggleActions: "play none none reverse"
+            once: true
           }
         }), firsts, seconds, self.lines, duration, stagger);
 
+        if (!opts.start) {
+          tl.eventCallback("onComplete", function () { el.setAttribute("data-revealed", ""); });
+        }
+
+        if (revealed) tl.progress(1);
         if (opts.start) opts.start(tl);
         return tl;
       }
