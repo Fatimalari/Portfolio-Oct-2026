@@ -132,7 +132,7 @@
     return function () {};
   }
 
-  // Block reveal for the hero (title, subtitle, Hire me), played with the
+  // Block reveal for the hero (title and subtitle), played with the
   // intro: SplitText splits each into lines so every wrapped line gets
   // its own block.
   // SplitText re-splits when fonts finish loading or the width changes, and
@@ -178,11 +178,6 @@
     return animateWithHero(document.querySelectorAll(".hero__line"), 0);
   }
 
-  // Hire me button: its text reveals just after the headline
-  function animateHeroCta() {
-    return animateWithHero(document.querySelectorAll(".hero .hero__cta .button__label"), 0.3);
-  }
-
   var mm = gsap.matchMedia();
   mm.add({
     desktop: "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
@@ -193,9 +188,7 @@
     var c = context.conditions;
     if (!c.desktop && !c.mobile) return;
     document.querySelectorAll(SELECTORS).forEach(function (el) { animate(el); });
-    var stopHero = animateHeroText();
-    var stopCta = animateHeroCta();
-    return function () { stopHero(); stopCta(); };
+    return animateHeroText();
   });
 
   // Header nav (About, Resume): the same two-colour block sweep plays over

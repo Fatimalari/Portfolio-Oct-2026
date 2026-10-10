@@ -61,8 +61,7 @@
 
 .hero__content { flex: 1; min-width: 0; } /* lets the tools strip clip instead of widening the page */
 
-/* Big display title, then a subtitle in the section-heading style
-   (H2), with "Hire me" level with the subtitle's last line */
+/* Big display title, then a subtitle in the section-heading style (H2) */
 .hero__head {
   display: flex;
   flex-wrap: wrap;
@@ -72,7 +71,7 @@
 }
 
 .hero__title {
-  flex: 0 0 100%; /* own row; subtitle and Hire me share the next */
+  flex: 0 0 100%;
   margin: 0;
   /* up to 128px, scaled down so it stays on one line and clear of the
      social icons on the right (desktop) */
@@ -96,12 +95,6 @@
 .hero .block-line-wrap {
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
-}
-
-.hero .hero__cta {
-  flex: none;
-  margin-left: auto;
-  margin-bottom: 0.4em; /* level with the subtitle's last baseline */
 }
 
 /* Tools strip under the headline: logos and names scrolling left in a
@@ -293,13 +286,8 @@
     padding: 96px var(--gutter) 40px;
   }
   .hero__content { flex: none; }
-  /* Hire me sits under the headline on the left, above the tools strip */
   .hero__head { gap: 24px; }
   .hero__title { --title-clear: 0px; } /* icons sit above the title here */
-  .hero .hero__cta {
-    margin-left: 0;
-    margin-bottom: 0;
-  }
 
   /* Mobile: 24px logos in 44px circles, in a row above the headline */
   .social {
