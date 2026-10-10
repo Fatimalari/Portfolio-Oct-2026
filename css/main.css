@@ -132,11 +132,17 @@
   color: var(--color-text);
 }
 
-.tools__item svg {
+.tools__item svg,
+.tools__logo {
   flex: none;
   width: 28px;
   height: 28px;
 }
+
+/* Desktop: the brands' full-colour logos; phones keep the one-colour
+   versions */
+.tools__logo { object-fit: contain; }
+.tools__mono { display: none; }
 
 @keyframes tools-scroll {
   to { transform: translateX(-25%); }
@@ -153,6 +159,8 @@
   .tools { --tools-gap: 36px; margin-top: 32px; }
   .tools__item { gap: 10px; font-size: 18px; }
   .tools__item svg { width: 22px; height: 22px; }
+  .tools__mono { display: block; }
+  .tools__logo { display: none; }
 }
 
 /* Social links: outline logos in 44px secondary-colour circles stacked on the right, centred at 40% of the hero */
