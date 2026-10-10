@@ -607,10 +607,10 @@ main > .section:last-child { padding-bottom: 120px; }
   list-style: none;
 }
 
+/* the role column starts exactly at the middle of the page */
 .resume-row {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 64px;
+  grid-template-columns: 50% 50%;
 }
 
 .resume-row + .resume-row {
@@ -660,7 +660,7 @@ main > .section:last-child { padding-bottom: 120px; }
 
 .resume-skills {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 50% 50%;
   row-gap: 32px;
 }
 
@@ -679,7 +679,7 @@ main > .section:last-child { padding-bottom: 120px; }
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 0 0 0 64px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
