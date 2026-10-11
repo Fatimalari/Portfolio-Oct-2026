@@ -10,8 +10,8 @@
 
   var rootStyle = getComputedStyle(document.documentElement);
   // Two blocks per line: the secondary colour leads, the accent follows
-  var FIRST_COLOR = rootStyle.getPropertyValue("--color-secondary").trim() || "#f7f4f8";
-  var SECOND_COLOR = rootStyle.getPropertyValue("--color-accent").trim() || "#9469f3";
+  var FIRST_COLOR = rootStyle.getPropertyValue("--color-secondary").trim() || "#eff2f8";
+  var SECOND_COLOR = rootStyle.getPropertyValue("--color-accent").trim() || "#3b4f9a";
   // Inside the secondary-colour panels the first block would be invisible,
   // so there it uses white (the primary colour) instead
   var PANEL_FIRST_COLOR = rootStyle.getPropertyValue("--color-primary").trim() || "#ffffff";
@@ -198,8 +198,8 @@
 
   // Header nav (About, Resume): the same two-colour block sweep plays over
   // the link on hover or keyboard focus. While the accent block covers the
-  // text, the link switches to purple, so the sweep reveals it purple; it
-  // stays purple until the pointer (or focus) leaves.
+  // text, the link switches to navy, so the sweep reveals it navy; it
+  // stays navy until the pointer (or focus) leaves.
   function navHover() {
     var cleanups = [];
 

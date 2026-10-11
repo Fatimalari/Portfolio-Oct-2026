@@ -1,6 +1,6 @@
 /* Touch screens have no hover, so a tap on a button (Know me
    better, the email) or a project row plays the hover animation — the dot grows, the text
-   turns purple, the underline slides in — and the link opens once it has
+   turns navy, the underline slides in — and the link opens once it has
    finished, about 0.3s later. Mouse and keyboard clicks open straight
    away, and so does everything for people who prefer reduced motion. */
 (function () {

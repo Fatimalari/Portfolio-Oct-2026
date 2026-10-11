@@ -80,9 +80,9 @@
   text-decoration: none;
 }
 
-/* Nav links turn purple on hover only once the block sweep has covered
+/* Nav links turn navy on hover only once the block sweep has covered
    them (js/text-reveal.js adds .is-hovered); the logo keeps its colour.
-   Without the sweep (reduced motion) they simply turn purple on hover. */
+   Without the sweep (reduced motion) they simply turn navy on hover. */
 .site-header__nav a.is-hovered { color: var(--color-accent-strong); }
 
 @media (hover: hover) and (prefers-reduced-motion: reduce) {
@@ -142,7 +142,7 @@
 .drawer__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(26, 21, 35, 0.4);
+  background: rgba(20, 26, 46, 0.4);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1074,8 +1074,8 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   }
 }
 
-/* Button: a purple dot and bold text, no box. On hover (or tap / focus)
-   the dot grows and the text turns purple. The text keeps the block
+/* Button: a navy dot and bold text, no box. On hover (or tap / focus)
+   the dot grows and the text turns navy. The text keeps the block
    reveal (js/text-reveal.js animates .button__label). */
 .button {
   --dot: 22px;
@@ -1103,7 +1103,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
 
 .button__label { position: relative; display: block; }
 
-/* On top of the dot and colour, a purple line slides in under the text
+/* On top of the dot and colour, a navy line slides in under the text
    from left to right (and shrinks back on leaving) */
 .button__label::after {
   content: "";
@@ -1127,7 +1127,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
 }
 
 
-/* deep accent for the text: 6:1 on white, same purple as the nav hover */
+/* deep accent for the text: 13.7:1 on white, same navy as the nav hover */
 .button:active,
 .button.is-tapped,
 .button:focus-visible { color: var(--color-accent-strong); }

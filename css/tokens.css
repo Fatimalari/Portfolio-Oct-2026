@@ -8,12 +8,12 @@
 :root {
   /* Colour */
   --color-primary: #ffffff;        /* main background */
-  --color-secondary: #f7f4f8;      /* alternate section / card background */
-  --color-accent: #9469f3;         /* brand accent: fills, highlights, large text */
-  --color-accent-strong: #6e43d9;  /* accent for small text & links (AA on both backgrounds) */
-  --color-text: #1a1523;           /* headings & primary text */
-  --color-text-muted: #5c5466;     /* secondary text */
-  --color-border: #e6e0ea;
+  --color-secondary: #eff2f8;      /* alternate section / card background (pale navy tint) */
+  --color-accent: #3b4f9a;         /* brand accent (ink navy): dots, fills, highlights */
+  --color-accent-strong: #1e2a5a;  /* deep ink navy for text, links and bubbles (13.7:1 on white) */
+  --color-text: #141a2e;           /* headings & primary text (navy-tinted near-black) */
+  --color-text-muted: #555b6e;     /* secondary text (6.8:1 on white) */
+  --color-border: #e3e6ee;
 
   /* Typography */
   --font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
