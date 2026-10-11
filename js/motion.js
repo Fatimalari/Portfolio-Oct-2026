@@ -20,6 +20,7 @@
     ".contact__title", ".contact .button",
     ".site-footer__bar",
     ".about-page__title", ".about-page__text", ".about-page__media",
+    ".approach__item", ".insights__intro",
     ".beyond__text", ".beyond__photo",
     ".resume-page__title", ".resume-head", ".resume-summary",
     ".resume-row", ".resume-skills__label", ".resume-tags"
