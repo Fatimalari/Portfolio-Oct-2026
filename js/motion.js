@@ -55,7 +55,7 @@
   }
 
   function fadeHero() {
-    var hero = gsap.utils.toArray(".hero__title, .hero__subtitle");
+    var hero = gsap.utils.toArray(".hero__hello, .hero__title, .hero__subtitle");
     if (!hero.length) return function () {};
     gsap.set(hero, { opacity: 0, y: FADE.y });
     root.classList.add("hero-ready"); // hand visibility over from the CSS guard to GSAP

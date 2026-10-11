@@ -241,6 +241,16 @@ html.menu-open { overflow: hidden; } /* no page scrolling behind the drawer */
   gap: 32px;
 }
 
+/* Small greeting above the display title */
+.hero__hello {
+  flex: 0 0 100%;
+  margin: 0 0 -8px;
+  font-size: 20px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
 .hero__title {
   flex: 0 0 100%;
   margin: 0;
@@ -253,7 +263,7 @@ html.menu-open { overflow: hidden; } /* no page scrolling behind the drawer */
 }
 
 .hero__subtitle {
-  max-width: 17.5em; /* wraps after "strategic", as in the design */
+  max-width: 22em;
   margin: 0;
   font-size: var(--h2-size);
   font-weight: var(--weight-medium);
@@ -469,6 +479,7 @@ html.menu-open { overflow: hidden; } /* no page scrolling behind the drawer */
   }
   .hero__content { flex: none; }
   .hero__head { gap: 24px; }
+  .hero__hello { font-size: 16px; margin-bottom: -8px; }
   .hero__title { --title-clear: 0px; } /* icons sit above the title here */
 
   /* Mobile: 24px logos in 44px circles, in a row above the headline */
@@ -1321,6 +1332,7 @@ main > .resume-section:last-child { padding-bottom: 120px; }
 
 /* Hero headline: hidden until motion.js fades it in (with a CSS fallback
    so it can never stay hidden if the script doesn't run) */
+.motion:not(.hero-ready) .hero__hello,
 .motion:not(.hero-ready) .hero__title,
 .motion:not(.hero-ready) .hero__subtitle {
   opacity: 0;
