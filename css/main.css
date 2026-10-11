@@ -1224,14 +1224,39 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   inset: 0;
   z-index: 100;
   display: block;
-  background: var(--color-accent);
   color: #fff;
-  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .is-loading body { overflow: hidden; }
 .is-loaded body { overflow: auto; }
-.is-loaded .preloader { transform: translateY(-100%); }
+
+/* Stairs exit: five navy columns lift away one after another, left to
+   right, after the name and counter fade out */
+.preloader__stairs {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.preloader__stairs span {
+  flex: 1;
+  margin-right: -1px; /* no hairline gaps between columns */
+  background: var(--color-accent);
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader__stairs span:nth-child(2) { transition-delay: 0.07s; }
+.preloader__stairs span:nth-child(3) { transition-delay: 0.14s; }
+.preloader__stairs span:nth-child(4) { transition-delay: 0.21s; }
+.preloader__stairs span:nth-child(5) { transition-delay: 0.28s; }
+
+.is-loaded .preloader__stairs span { transform: translateY(-100%); }
+
+.preloader__center,
+.preloader__bar { transition: opacity 0.3s ease; }
+
+.is-loaded .preloader__center,
+.is-loaded .preloader__bar { opacity: 0; }
 
 .preloader__center {
   position: absolute;

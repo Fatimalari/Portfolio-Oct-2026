@@ -6,8 +6,8 @@
   var count = preloader.querySelector(".preloader__count");
   var fill = preloader.querySelector(".preloader__bar-fill");
 
-  var MIN_DURATION = 1400; // counter always runs at least this long
-  var MAX_WAIT = 4000;     // never hold the page longer than this
+  var MIN_DURATION = 800;  // counter always runs at least this long
+  var MAX_WAIT = 2500;     // never hold the page longer than this
   var start = performance.now();
   var pageReady = false;
 
@@ -31,16 +31,19 @@
     fill.style.transform = "scaleX(" + value / 100 + ")";
 
     if (value < 100) requestAnimationFrame(tick);
-    else setTimeout(finish, 200);
+    else setTimeout(finish, 120);
   }
   requestAnimationFrame(tick);
 
   function finish() {
     try { sessionStorage.setItem("preloader-seen", "1"); } catch (e) {}
     root.classList.add("is-loaded");
-    preloader.addEventListener("transitionend", function () {
+    // done once the last stair has lifted
+    var last = preloader.querySelector(".preloader__stairs span:last-child");
+    last.addEventListener("transitionend", function (event) {
+      if (event.target !== last) return;
       root.classList.remove("is-loading");
       preloader.remove();
-    }, { once: true });
+    });
   }
 })();
