@@ -25,7 +25,8 @@
       button.classList.add("is-tapped");
       clearTimeout(timer);
       timer = setTimeout(function () {
-        window.location.href = button.href;
+        if (button.target === "_blank") window.open(button.href, "_blank", "noopener");
+        else window.location.href = button.href;
         setTimeout(function () { button.classList.remove("is-tapped"); }, RESET);
       }, DELAY);
     });

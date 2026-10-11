@@ -71,23 +71,36 @@
 }
 
 .site-header__nav a {
-  position: relative; /* holds the hover block-sweep covers */
+  position: relative; /* holds the hover underline */
   display: inline-block;
-  overflow: hidden;
   font-size: var(--text-primary-size);
   line-height: 1;
   color: var(--color-text);
   text-decoration: none;
 }
 
-/* Nav links turn navy on hover only once the block sweep has covered
-   them (js/text-reveal.js adds .is-hovered); the logo keeps its colour.
-   Without the sweep (reduced motion) they simply turn navy on hover. */
-.site-header__nav a.is-hovered { color: var(--color-accent-strong); }
-
-@media (hover: hover) and (prefers-reduced-motion: reduce) {
-  .site-header__nav a:hover { color: var(--color-accent-strong); }
+/* Hover / focus: a navy line slides in under the link from left to
+   right, like the buttons; the text itself doesn't change */
+.site-header__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--color-accent-strong);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.site-header__nav a:focus-visible::after,
+.site-header__nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+@media (hover: hover) {
+  .site-header__nav a:hover::after { transform: scaleX(1); }
+}
+
 
 .site-header a:focus-visible {
   outline: 2px solid var(--color-accent);
@@ -248,12 +261,6 @@ html.menu-open { overflow: hidden; } /* no page scrolling behind the drawer */
 }
 
 .hero__line { display: block; }
-
-/* room for descenders (g, y) inside the block-reveal's clipped lines */
-.hero .block-line-wrap {
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
-}
 
 /* Tools strip under the headline: logos and names scrolling left in a
    loop. The track holds four identical groups, so moving it a quarter of
@@ -658,13 +665,6 @@ main > .section:last-child { padding-bottom: 120px; }
   letter-spacing: -0.02em;
 }
 
-/* room for descenders inside the block-reveal's clipped line */
-.about-page__title .block-line-wrap,
-.resume-page__title .block-line-wrap {
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
-}
-
 /* Text takes half the content width, the photo most of the rest */
 .about-page__grid {
   display: grid;
@@ -1028,7 +1028,25 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   margin: 0;
 }
 
-.contact .button { margin-top: 40px; }
+/* Final call to action: a short availability note, then two larger
+   buttons side by side */
+.contact__note {
+  margin: 24px 0 0;
+  color: var(--color-text-muted);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px 56px;
+  margin-top: 40px;
+}
+
+.contact .button {
+  --dot: 26px;
+  font-size: 28px;
+}
 
 .site-footer__bar {
   display: flex;
@@ -1126,6 +1144,31 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   .button:hover .button__label::after { transform: scaleX(1); }
 }
 
+/* Arrow after links that take you somewhere (case studies, About me,
+   LinkedIn); it nudges forward on hover */
+.button__arrow {
+  flex: none;
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: -4px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:active .button__arrow,
+.button.is-tapped .button__arrow,
+.button:focus-visible .button__arrow { transform: translateX(4px); }
+.button:active .button__arrow--out,
+.button.is-tapped .button__arrow--out,
+.button:focus-visible .button__arrow--out { transform: translate(3px, -3px); }
+
+@media (hover: hover) {
+  .button:hover .button__arrow,
+  .work-card:hover .work-card__cta .button__arrow { transform: translateX(4px); }
+  .button:hover .button__arrow--out { transform: translate(3px, -3px); }
+}
+
+.work-card.is-tapped .work-card__cta .button__arrow { transform: translateX(4px); }
+
 
 /* deep accent for the text: 13.7:1 on white, same navy as the nav hover */
 .button:active,
@@ -1156,6 +1199,8 @@ main > .resume-section:last-child { padding-bottom: 120px; }
 
 @media (max-width: 767px) {
   .button { --dot: 18px; gap: 10px; font-size: 19px; }
+  .contact .button { --dot: 20px; font-size: 22px; }
+  .contact__actions { gap: 16px 36px; }
 }
 
 @media (max-width: 767px) {
@@ -1246,20 +1291,15 @@ main > .resume-section:last-child { padding-bottom: 120px; }
   transition-delay: 0.75s;
 }
 
-/* Block-reveal text animation (js/text-reveal.js) */
-.block-line-wrap {
-  position: relative;
-  display: block;
-  width: fit-content; /* block sweeps only across the text, not the full column */
-  overflow: hidden;
-}
-
-.contact__title .block-line-wrap { margin-inline: auto; }
-
-.block-line-cover {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
 
 .nowrap { white-space: nowrap; }
+
+/* Hero headline: hidden until motion.js fades it in (with a CSS fallback
+   so it can never stay hidden if the script doesn't run) */
+.motion:not(.hero-ready) .hero__title,
+.motion:not(.hero-ready) .hero__subtitle {
+  opacity: 0;
+  animation: hero-fallback 0s 6s forwards;
+}
+
+@keyframes hero-fallback { to { opacity: 1; } }

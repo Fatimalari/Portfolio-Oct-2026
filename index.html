@@ -6,8 +6,8 @@
   <title>Fatima Lari — UX/UI Designer</title>
   <meta name="description" content="Fatima Lari is a UX/UI designer based in Debrecen, Hungary.">
   <link rel="preload" href="fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css?v=99">
-  <link rel="stylesheet" href="css/main.css?v=99">
+  <link rel="stylesheet" href="css/tokens.css?v=101">
+  <link rel="stylesheet" href="css/main.css?v=101">
   <script>
     /* Show the preloader once per visit, and never for reduced-motion users */
     (function () {
@@ -15,20 +15,20 @@
       try { seen = sessionStorage.getItem("preloader-seen") === "1"; } catch (e) {}
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!seen && !reduce) document.documentElement.classList.add("is-loading");
+      if (!reduce) document.documentElement.classList.add("motion");
     })();
     /* Lets iOS Safari show :active (tap) states */
     document.addEventListener("touchstart", function () {}, { passive: true });
   </script>
-  <script src="js/preloader.js?v=99" defer></script>
-  <script src="js/vendor/gsap.min.js?v=99" defer></script>
-  <script src="js/vendor/ScrollTrigger.min.js?v=99" defer></script>
-  <script src="js/vendor/SplitText.min.js?v=99" defer></script>
-  <script src="js/text-reveal.js?v=99" defer></script>
-  <script src="js/social.js?v=99" defer></script>
-  <script src="js/buttons.js?v=99" defer></script>
-  <script src="js/clock.js?v=99" defer></script>
-  <script src="js/menu.js?v=99" defer></script>
-  <script src="js/header.js?v=99" defer></script>
+  <script src="js/preloader.js?v=101" defer></script>
+  <script src="js/vendor/gsap.min.js?v=101" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js?v=101" defer></script>
+  <script src="js/motion.js?v=101" defer></script>
+  <script src="js/social.js?v=101" defer></script>
+  <script src="js/buttons.js?v=101" defer></script>
+  <script src="js/clock.js?v=101" defer></script>
+  <script src="js/menu.js?v=101" defer></script>
+  <script src="js/header.js?v=101" defer></script>
 </head>
 <body>
   <div class="preloader" aria-hidden="true">
@@ -163,7 +163,7 @@
               <p class="work-card__category">Website Design</p>
               <h3 class="work-card__title">Lumina Dental</h3>
               <p class="work-card__desc">A dental clinic website that makes booking an appointment quick and stress-free.</p>
-              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">View case study</span></span>
+              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Read the case study</span><svg class="button__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
             <div class="work-card__media">
               <picture>
@@ -180,7 +180,7 @@
               <p class="work-card__category">Homepage Redesign</p>
               <h3 class="work-card__title">DHL Hungary</h3>
               <p class="work-card__desc">A homepage redesign that puts sending and tracking a parcel front and centre.</p>
-              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">View case study</span></span>
+              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Read the case study</span><svg class="button__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
             <div class="work-card__media">
               <picture>
@@ -197,7 +197,7 @@
               <p class="work-card__category">Ecommerce Design</p>
               <h3 class="work-card__title">Skinstudio</h3>
               <p class="work-card__desc">An online skincare store built around honest pricing and easy product discovery.</p>
-              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">View case study</span></span>
+              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Read the case study</span><svg class="button__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
             <div class="work-card__media">
               <picture>
@@ -214,7 +214,7 @@
               <p class="work-card__category">For the fun of it</p>
               <h3 class="work-card__title">Passion Projects</h3>
               <p class="work-card__desc">Self-initiated concepts, like UrbanNest, a real estate site for finding your next home.</p>
-              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">View case study</span></span>
+              <span class="button work-card__cta"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Read the case study</span><svg class="button__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
             <div class="work-card__media">
               <picture>
@@ -236,7 +236,7 @@
           <div class="about__text">
             <p>After five years of working in dentistry, I moved into UX/UI design with the same focus on people, clarity, and getting the details right.</p>
             <p>I design websites and landing pages that boost engagement and help your business grow. People find what they need faster, so more of them stick around and get in touch.</p>
-            <a class="button" href="about.html"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Know me better</span></a>
+            <a class="button" href="about.html"><span class="button__dot" aria-hidden="true"></span><span class="button__label">More about me</span><svg class="button__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <div class="about__media">
             <picture>
@@ -358,7 +358,11 @@
     <div class="site-footer__panel">
       <div class="contact">
         <h2 class="contact__title">Let’s talk about <span class="nowrap">your project!</span></h2>
-        <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Let’s talk</span></a>
+        <p class="contact__note">Open to remote &amp; EU-based roles</p>
+        <div class="contact__actions">
+          <a class="button" href="mailto:fatima.lari07@gmail.com"><span class="button__dot" aria-hidden="true"></span><span class="button__label">Email me</span></a>
+          <a class="button" href="https://www.linkedin.com/in/fatimalari" target="_blank" rel="noopener"><span class="button__dot" aria-hidden="true"></span><span class="button__label">LinkedIn</span><svg class="button__arrow button__arrow--out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
     </div>
 
